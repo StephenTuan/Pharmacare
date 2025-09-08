@@ -1,90 +1,127 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# PharmaCare - Ứng dụng bán thuốc tây
 
-# Getting Started
+Ứng dụng React Native cho việc mua bán thuốc tây trực tuyến với đầy đủ tính năng từ đăng ký, đăng nhập đến mua hàng và thanh toán.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Tính năng chính
 
-## Step 1: Start Metro
+### 🔐 Xác thực người dùng
+- Màn hình Splash với kiểm tra trạng thái đăng nhập
+- Đăng ký tài khoản mới với validation
+- Đăng nhập với email/password
+- Lưu trữ thông tin người dùng với AsyncStorage
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### 🏠 Trang chủ và Navigation
+- Bottom Tab Navigation với 4 tab:
+  - **Trang chủ**: Danh sách sản phẩm với tìm kiếm
+  - **Danh mục**: Phân loại sản phẩm theo danh mục
+  - **Yêu thích**: Quản lý sản phẩm yêu thích
+  - **Tài khoản**: Thông tin cá nhân và cài đặt
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### 💊 Quản lý sản phẩm
+- Hiển thị danh sách sản phẩm từ REST API
+- Tìm kiếm sản phẩm theo tên và danh mục
+- Chi tiết sản phẩm với hình ảnh, mô tả, giá cả
+- Đánh giá và nhận xét sản phẩm
+- Thêm/xóa sản phẩm yêu thích
 
-```sh
-# Using npm
+### 🛒 Giỏ hàng và Thanh toán
+- Thêm sản phẩm vào giỏ hàng
+- Quản lý số lượng sản phẩm trong giỏ
+- Tính toán tổng tiền và phí vận chuyển
+- Quy trình thanh toán hoàn chỉnh
+- Nhiều phương thức thanh toán (COD, chuyển khoản, ví điện tử)
+
+## Cài đặt và Chạy ứng dụng
+
+### Yêu cầu hệ thống
+- Node.js >= 20
+- React Native CLI
+- Android Studio (cho Android)
+- Xcode (cho iOS - chỉ trên macOS)
+
+### Cài đặt dependencies
+```bash
+npm install
+```
+
+### Chạy JSON Server (Backend)
+```bash
+# Chạy JSON server trên port 3001
+npm run json-server
+
+# Hoặc chạy đồng thời JSON server và React Native
+npm run dev
+```
+
+### Chạy ứng dụng
+
+#### Android
+```bash
+# Khởi động Metro bundler
 npm start
 
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+# Trong terminal khác, chạy Android
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
+#### iOS
+```bash
+# Cài đặt pods (chỉ cần chạy 1 lần)
+cd ios && pod install && cd ..
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+# Chạy iOS
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Dữ liệu mẫu
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+### Tài khoản test:
+- **Admin**: admin@pharmacare.vn / 123456
+- **User**: user@example.com / 123456
 
-## Step 3: Modify your app
+### Sản phẩm mẫu:
+- Paracetamol 500mg - 25,000đ
+- Vitamin C 1000mg - 150,000đ
+- Amoxicillin 500mg - 45,000đ
+- Omega-3 Fish Oil - 320,000đ
+- Gel rửa tay khô - 35,000đ
+- Kem chống nắng SPF 50+ - 180,000đ
+- Nhiệt kế điện tử - 250,000đ
+- Thuốc ho Prospan - 85,000đ
 
-Now that you have successfully run the app, let's make changes!
+## Công nghệ sử dụng
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+- **React Native 0.81.1** - Framework chính
+- **TypeScript** - Type safety
+- **React Navigation 6** - Navigation system
+- **Axios** - HTTP client
+- **AsyncStorage** - Local storage
+- **React Native Vector Icons** - Icon library
+- **JSON Server** - Mock REST API
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## Troubleshooting
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+### Lỗi thường gặp:
 
-## Congratulations! :tada:
+1. **Metro bundler không khởi động được**
+   ```bash
+   npx react-native start --reset-cache
+   ```
 
-You've successfully run and modified your React Native App. :partying_face:
+2. **Android build failed**
+   ```bash
+   cd android && ./gradlew clean && cd ..
+   ```
 
-### Now what?
+3. **iOS build failed**
+   ```bash
+   cd ios && pod install && cd ..
+   ```
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+4. **JSON Server không kết nối được**
+   - Kiểm tra port 3001 có bị chiếm không
+   - Đảm bảo file db.json tồn tại
+   - Kiểm tra firewall settings
 
 # Learn More
 
