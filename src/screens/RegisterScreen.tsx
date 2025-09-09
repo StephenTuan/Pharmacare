@@ -9,6 +9,8 @@ import {
   ScrollView,
   StatusBar,
   ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform, Image
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -95,8 +97,16 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <StatusBar backgroundColor="#2196F3" barStyle="light-content" />
+    <KeyboardAvoidingView 
+      style={styles.container} 
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView 
+        style={styles.scrollView} 
+        contentContainerStyle={styles.contentContainer}
+        keyboardShouldPersistTaps="handled"
+      >
+        <StatusBar backgroundColor="#00A86B" barStyle="light-content" />
       
       <View style={styles.header}>
         <TouchableOpacity
@@ -107,7 +117,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
         </TouchableOpacity>
         
         <View style={styles.logoContainer}>
-          <Text style={styles.logoEmoji}>💊</Text>
+          <Image style={{width:90, height:90, marginBottom:10}} source={{uri:'https://cdn.discordapp.com/attachments/1351129328489992233/1414871105763803156/ic_launcher_round.png?ex=68c124e6&is=68bfd366&hm=b71867198b7fe5fe672965216cb46dd88519e18962bd4899061ba72df26e617a&'}}/>
         </View>
         <Text style={styles.title}>Đăng ký</Text>
         <Text style={styles.subtitle}>Tạo tài khoản mới</Text>
@@ -216,14 +226,15 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>
-          Bằng cách đăng ký, bạn đồng ý với{' '}
-          <Text style={styles.linkText}>Điều khoản sử dụng</Text> và{' '}
-          <Text style={styles.linkText}>Chính sách bảo mật</Text>
-        </Text>
-      </View>
-    </ScrollView>
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
+            Bằng cách đăng ký, bạn đồng ý với{' '}
+            <Text style={styles.linkText}>Điều khoản sử dụng</Text> và{' '}
+            <Text style={styles.linkText}>Chính sách bảo mật</Text>
+          </Text>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -232,6 +243,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f8f9fa',
   },
+  scrollView: {
+    flex: 1,
+  },
   contentContainer: {
     flexGrow: 1,
   },
@@ -239,7 +253,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 40,
     paddingBottom: 30,
-    backgroundColor: '#2196F3',
+    backgroundColor: '#00A86B',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
     position: 'relative',
@@ -303,14 +317,14 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   registerButton: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#00A86B',
     borderRadius: 12,
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
     elevation: 3,
-    shadowColor: '#2196F3',
+    shadowColor: '#00A86B',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 8,
@@ -332,7 +346,7 @@ const styles = StyleSheet.create({
     color: '#666',
   },
   loginLink: {
-    color: '#2196F3',
+    color: '#00A86B',
     fontWeight: 'bold',
   },
   footer: {
@@ -346,7 +360,7 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
   linkText: {
-    color: '#2196F3',
+    color: '#00A86B',
   },
 });
 

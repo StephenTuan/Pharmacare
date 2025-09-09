@@ -7,10 +7,29 @@ const BASE_URL = 'http://192.168.31.79:3001'; // For physical device on same net
 
 const api = axios.create({
   baseURL: BASE_URL,
+  timeout: 10000, // 10 seconds timeout
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+// Add response interceptor for better error handling
+api.interceptors.response.use(
+  (response) => {
+    console.log('API Response Success:', response.config.url, response.status);
+    return response;
+  },
+  (error) => {
+    console.error('API Response Error:', {
+      url: error.config?.url,
+      method: error.config?.method,
+      status: error.response?.status,
+      message: error.message,
+      code: error.code
+    });
+    return Promise.reject(error);
+  }
+);
 
 // Add token to requests
 api.interceptors.request.use(async (config) => {
@@ -65,8 +84,39 @@ export const authAPI = {
 // Products API
 export const productsAPI = {
   getAll: async (): Promise<Product[]> => {
-    const response = await api.get('/products');
-    return response.data;
+    try {
+      console.log('Making API request to:', `${BASE_URL}/products`);
+      const response = await api.get('/products');
+      console.log('API response status:', response.status);
+      console.log('API response data length:', response.data.length);
+      return response.data;
+    } catch (axiosError: any) {
+      console.error('Axios request failed:', axiosError.message);
+      console.error('Axios error code:', axiosError.code);
+      
+      // Fallback to fetch API if axios fails
+      try {
+        console.log('Trying fallback fetch API...');
+        const fetchResponse = await fetch(`${BASE_URL}/products`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          timeout: 10000,
+        });
+        
+        if (!fetchResponse.ok) {
+          throw new Error(`HTTP ${fetchResponse.status}: ${fetchResponse.statusText}`);
+        }
+        
+        const data = await fetchResponse.json();
+        console.log('Fetch API success, data length:', data.length);
+        return data;
+      } catch (fetchError: any) {
+        console.error('Fetch API also failed:', fetchError.message);
+        throw new Error(`Both Axios and Fetch failed. Axios: ${axiosError.message}, Fetch: ${fetchError.message}`);
+      }
+    }
   },
 
   getById: async (id: string): Promise<Product> => {
@@ -102,8 +152,24 @@ export const reviewsAPI = {
 // Cart API (using AsyncStorage for local cart)
 export const cartAPI = {
   getCart: async (): Promise<CartItem[]> => {
-    const cartStr = await AsyncStorage.getItem('cart');
-    return cartStr ? JSON.parse(cartStr) : [];
+    try {
+      // Try to load from database first
+      const currentUser = await authAPI.getCurrentUser();
+      if (currentUser && currentUser.cart) {
+        // Sync with AsyncStorage
+        await AsyncStorage.setItem('cart', JSON.stringify(currentUser.cart));
+        return currentUser.cart;
+      } else {
+        // Fallback to AsyncStorage
+        const cartStr = await AsyncStorage.getItem('cart');
+        return cartStr ? JSON.parse(cartStr) : [];
+      }
+    } catch (dbError) {
+      console.error('Error loading cart from database:', dbError);
+      // Fallback to AsyncStorage
+      const cartStr = await AsyncStorage.getItem('cart');
+      return cartStr ? JSON.parse(cartStr) : [];
+    }
   },
 
   addToCart: async (productId: string, quantity: number = 1): Promise<CartItem[]> => {
@@ -124,14 +190,57 @@ export const cartAPI = {
       cart.push(newItem);
     }
     
+    // Update AsyncStorage
     await AsyncStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Update user cart in database
+    try {
+      const currentUser = await authAPI.getCurrentUser();
+      if (currentUser) {
+        await fetch(`http://10.0.2.2:3001/users/${currentUser.id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            cart: cart,
+          }),
+        });
+      }
+    } catch (dbError) {
+      console.error('Error updating cart in database:', dbError);
+      // Continue with local update even if DB update fails
+    }
+    
     return cart;
   },
 
   removeFromCart: async (itemId: string): Promise<CartItem[]> => {
     const cart = await cartAPI.getCart();
     const updatedCart = cart.filter(item => item.id !== itemId);
+    
+    // Update AsyncStorage
     await AsyncStorage.setItem('cart', JSON.stringify(updatedCart));
+    
+    // Update user cart in database
+    try {
+      const currentUser = await authAPI.getCurrentUser();
+      if (currentUser) {
+        await fetch(`http://10.0.2.2:3001/users/${currentUser.id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            cart: updatedCart,
+          }),
+        });
+      }
+    } catch (dbError) {
+      console.error('Error updating cart in database:', dbError);
+      // Continue with local update even if DB update fails
+    }
+    
     return updatedCart;
   },
 
@@ -141,14 +250,55 @@ export const cartAPI = {
     
     if (item) {
       item.quantity = quantity;
+      
+      // Update AsyncStorage
       await AsyncStorage.setItem('cart', JSON.stringify(cart));
+      
+      // Update user cart in database
+      try {
+        const currentUser = await authAPI.getCurrentUser();
+        if (currentUser) {
+          await fetch(`http://10.0.2.2:3001/users/${currentUser.id}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              cart: cart,
+            }),
+          });
+        }
+      } catch (dbError) {
+        console.error('Error updating cart in database:', dbError);
+        // Continue with local update even if DB update fails
+      }
     }
     
     return cart;
   },
 
   clearCart: async (): Promise<void> => {
+    // Clear AsyncStorage
     await AsyncStorage.removeItem('cart');
+    
+    // Update user cart in database
+    try {
+      const currentUser = await authAPI.getCurrentUser();
+      if (currentUser) {
+        await fetch(`http://10.0.2.2:3001/users/${currentUser.id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            cart: [],
+          }),
+        });
+      }
+    } catch (dbError) {
+      console.error('Error clearing cart in database:', dbError);
+      // Continue with local clear even if DB update fails
+    }
   },
 };
 

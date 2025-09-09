@@ -62,6 +62,13 @@ const CheckoutScreen: React.FC<Props> = ({ navigation }) => {
     return calculateSubtotal() + calculateShipping();
   };
 
+  const calculateLoyaltyPoints = (total: number) => {
+    if (total < 50000) return 0;
+    if (total < 200000) return 1;
+    if (total < 500000) return 2;
+    return 3;
+  };
+
   const handlePlaceOrder = async () => {
     if (!shippingAddress.trim()) {
       Alert.alert('Lỗi', 'Vui lòng nhập địa chỉ giao hàng');
@@ -75,13 +82,38 @@ const CheckoutScreen: React.FC<Props> = ({ navigation }) => {
 
     setLoading(true);
     try {
+      const orderTotal = calculateTotal();
+      const loyaltyPoints = calculateLoyaltyPoints(orderTotal);
+      
+      // Create order
       await ordersAPI.create({
         userId: user!.id,
         items: cartItems,
-        total: calculateTotal(),
+        total: orderTotal,
         status: 'pending',
         shippingAddress,
       });
+
+      // Update user loyalty points if user exists
+      if (user && loyaltyPoints > 0) {
+        try {
+          const currentUser = await authAPI.getCurrentUser();
+          const updatedPoints = (currentUser.loyaltyPoints || 0) + loyaltyPoints;
+          
+          // Update user in database
+          await fetch(`http://10.0.2.2:3001/users/${user.id}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              loyaltyPoints: updatedPoints,
+            }),
+          });
+        } catch (error) {
+          console.error('Error updating loyalty points:', error);
+        }
+      }
 
       await cartAPI.clearCart();
       setShowSuccessModal(true);

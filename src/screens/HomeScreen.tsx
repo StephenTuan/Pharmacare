@@ -17,8 +17,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchProducts, setSearchQuery, setSelectedCategory } from '../store/slices/productsSlice';
 import { addToCart } from '../store/slices/cartSlice';
-import { toggleFavorite } from '../store/slices/favoritesSlice';
-import { Card, Button, Loading } from '../components';
+import { toggleFavorite, loadFavorites } from '../store/slices/favoritesSlice';
+import { Loading } from '../components';
 import { Product, RootStackParamList } from '../types';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Main'>;
@@ -41,21 +41,28 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(loadFavorites());
   }, [dispatch]);
 
   const handleAddToCart = async (productId: string) => {
     try {
-      await dispatch(addToCart({ productId })).unwrap();
+      console.log('Adding to cart:', productId);
+      const result = await dispatch(addToCart({ productId })).unwrap();
+      console.log('Add to cart result:', result);
       Alert.alert('Thành công', 'Đã thêm sản phẩm vào giỏ hàng');
     } catch (error) {
+      console.error('Add to cart error:', error);
       Alert.alert('Lỗi', 'Không thể thêm sản phẩm vào giỏ hàng');
     }
   };
 
   const handleToggleFavorite = async (productId: string) => {
     try {
-      await dispatch(toggleFavorite(productId)).unwrap();
+      console.log('Toggling favorite:', productId);
+      const result = await dispatch(toggleFavorite(productId)).unwrap();
+      console.log('Toggle favorite result:', result);
     } catch (error) {
+      console.error('Toggle favorite error:', error);
       Alert.alert('Lỗi', 'Không thể cập nhật danh sách yêu thích');
     }
   };
@@ -88,14 +95,14 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   const renderProduct = ({ item }: { item: Product }) => (
-    <Card
+    <TouchableOpacity
       style={styles.productCard}
       onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
-      animated
+      activeOpacity={0.9}
     >
       <View style={styles.productImageContainer}>
         <Image
-          source={{ uri: item.image || 'https://via.placeholder.com/150' }}
+          source={{ uri: item.thumbnail || item.image || 'https://via.placeholder.com/150' }}
           style={styles.productImage}
           resizeMode="cover"
         />
@@ -125,24 +132,23 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
         
         <View style={styles.priceContainer}>
           <Text style={styles.price}>{item.price.toLocaleString('vi-VN')}đ</Text>
-          <Button
-            title=""
-            onPress={() => handleAddToCart(item.id)}
-            variant="primary"
-            size="small"
-            icon="add-shopping-cart"
+          <TouchableOpacity
             style={styles.addToCartButton}
-          />
+            onPress={() => handleAddToCart(item.id)}
+            activeOpacity={0.7}
+          >
+            <Icon name="add-shopping-cart" size={18} color="#fff" />
+          </TouchableOpacity>
         </View>
       </View>
-    </Card>
+    </TouchableOpacity>
   );
 
   if (loading && !refreshing) {
     return (
       <View style={styles.loadingContainer}>
         <StatusBar backgroundColor="#00A86B" barStyle="light-content" />
-        <Loading size="large" color="#00A86B" type="gradient" />
+        <Loading size="large" color="#00A86B" type="spinner" />
       </View>
     );
   }
@@ -365,7 +371,13 @@ const styles = StyleSheet.create({
   productCard: {
     flex: 1,
     margin: 5,
-    padding: 0,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
   productImageContainer: {
     position: 'relative',
@@ -427,8 +439,14 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    padding: 0,
-    minHeight: 36,
+    backgroundColor: '#00A86B',
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
   },
   emptyContainer: {
     flex: 1,

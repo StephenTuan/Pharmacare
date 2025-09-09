@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { productsAPI } from '../../services/api';
+import { productsAPI, authAPI } from '../../services/api';
 import { Product } from '../../types';
 
 interface FavoritesState {
@@ -22,8 +22,26 @@ export const loadFavorites = createAsyncThunk(
   'favorites/loadFavorites',
   async (_, { rejectWithValue }) => {
     try {
-      const favoritesStr = await AsyncStorage.getItem('favorites');
-      const favoriteIds = favoritesStr ? JSON.parse(favoritesStr) : [];
+      let favoriteIds: string[] = [];
+      
+      // Try to load from database first
+      try {
+        const currentUser = await authAPI.getCurrentUser();
+        if (currentUser && currentUser.favorites) {
+          favoriteIds = currentUser.favorites;
+          // Sync with AsyncStorage
+          await AsyncStorage.setItem('favorites', JSON.stringify(favoriteIds));
+        } else {
+          // Fallback to AsyncStorage
+          const favoritesStr = await AsyncStorage.getItem('favorites');
+          favoriteIds = favoritesStr ? JSON.parse(favoritesStr) : [];
+        }
+      } catch (dbError) {
+        console.error('Error loading favorites from database:', dbError);
+        // Fallback to AsyncStorage
+        const favoritesStr = await AsyncStorage.getItem('favorites');
+        favoriteIds = favoritesStr ? JSON.parse(favoritesStr) : [];
+      }
       
       if (favoriteIds.length > 0) {
         const allProducts = await productsAPI.getAll();
@@ -56,7 +74,27 @@ export const toggleFavorite = createAsyncThunk(
         updatedFavorites = [...currentFavorites, productId];
       }
       
+      // Update AsyncStorage
       await AsyncStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      
+      // Update user favorites in database
+      try {
+        const currentUser = await authAPI.getCurrentUser();
+        if (currentUser) {
+          await fetch(`http://10.0.2.2:3001/users/${currentUser.id}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              favorites: updatedFavorites,
+            }),
+          });
+        }
+      } catch (dbError) {
+        console.error('Error updating favorites in database:', dbError);
+        // Continue with local update even if DB update fails
+      }
       
       // Get updated favorite products
       let favoriteProducts: Product[] = [];

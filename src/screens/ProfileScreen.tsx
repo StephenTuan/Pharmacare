@@ -21,9 +21,12 @@ interface Props {
 
 const ProfileScreen: React.FC<Props> = ({ navigation }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [orderCount, setOrderCount] = useState(0);
+  const [loyaltyPoints, setLoyaltyPoints] = useState(0);
 
   useEffect(() => {
     loadUserInfo();
+    loadUserStats();
   }, []);
 
   const loadUserInfo = async () => {
@@ -33,6 +36,34 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
     } catch (error) {
       console.error('Error loading user info:', error);
     }
+  };
+
+  const loadUserStats = async () => {
+    try {
+      const currentUser = await authAPI.getCurrentUser();
+      if (currentUser) {
+        // Load user orders
+        const ordersResponse = await fetch(`http://10.0.2.2:3001/orders?userId=${currentUser.id}`);
+        const orders = await ordersResponse.json();
+        setOrderCount(orders.length);
+        
+        // Calculate total loyalty points
+        const totalPoints = orders.reduce((sum: number, order: any) => {
+          const orderPoints = calculateLoyaltyPoints(order.total);
+          return sum + orderPoints;
+        }, 0);
+        setLoyaltyPoints(totalPoints);
+      }
+    } catch (error) {
+      console.error('Error loading user stats:', error);
+    }
+  };
+
+  const calculateLoyaltyPoints = (total: number) => {
+    if (total < 50000) return 0;
+    if (total < 200000) return 1;
+    if (total < 500000) return 2;
+    return 3;
   };
 
   const handleLogout = () => {
@@ -64,7 +95,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
       id: '2',
       title: 'Đơn hàng của tôi',
       icon: 'shopping-bag',
-      onPress: () => Alert.alert('Thông báo', 'Tính năng đang phát triển'),
+      onPress: () => navigation.navigate('OrderHistory'),
     },
     {
       id: '3',
@@ -122,7 +153,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <StatusBar backgroundColor="#2196F3" barStyle="light-content" />
+      <StatusBar backgroundColor="#00A86B" barStyle="light-content" />
       
       <View style={styles.header}>
         <View style={styles.profileSection}>
@@ -142,7 +173,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
       <View style={styles.content}>
         <View style={styles.statsContainer}>
           <View style={styles.statItem}>
-            <Text style={styles.statNumber}>0</Text>
+            <Text style={styles.statNumber}>{orderCount}</Text>
             <Text style={styles.statLabel}>Đơn hàng</Text>
           </View>
           <View style={styles.statDivider} />
@@ -152,7 +183,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
           </View>
           <View style={styles.statDivider} />
           <View style={styles.statItem}>
-            <Text style={styles.statNumber}>0</Text>
+            <Text style={styles.statNumber}>{loyaltyPoints}</Text>
             <Text style={styles.statLabel}>Điểm tích lũy</Text>
           </View>
         </View>
@@ -181,7 +212,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f9fa',
   },
   header: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#00A86B',
     paddingTop: 40,
     paddingBottom: 30,
     paddingHorizontal: 20,

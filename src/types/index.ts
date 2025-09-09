@@ -6,13 +6,18 @@ export interface User {
   phone?: string;
   address?: string;
   createdAt: string;
+  loyaltyPoints?: number;
+  cart?: CartItem[];
+  favorites?: string[];
 }
 
 export interface Product {
   id: string;
   name: string;
   price: number;
-  image: string;
+  image?: string; // Keep for backward compatibility
+  thumbnail: string;
+  previewImages: string[];
   description: string;
   category: string;
   rating: number;
@@ -62,6 +67,8 @@ export interface RootStackParamList {
   ProductDetail: { productId: string };
   Cart: undefined;
   Checkout: undefined;
+  OrderHistory: undefined;
+  OrderDetail: { orderId: string };
 }
 
 export interface TabParamList {

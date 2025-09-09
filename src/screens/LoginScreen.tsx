@@ -6,11 +6,16 @@ import {
   Alert,
   ScrollView,
   StatusBar,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+  Image
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useAppDispatch } from '../store/hooks';
 import { loginUser } from '../store/slices/authSlice';
-import { Button, Input, Card } from '../components';
 import { RootStackParamList } from '../types';
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
@@ -44,72 +49,102 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <StatusBar backgroundColor="#00A86B" barStyle="light-content" />
-      
-      <View style={styles.header}>
-        <View style={styles.logoContainer}>
-          <Text style={styles.logoEmoji}>💊</Text>
-        </View>
-        <Text style={styles.title}>Đăng nhập</Text>
-        <Text style={styles.subtitle}>Chào mừng bạn trở lại!</Text>
-      </View>
-
-      <Card style={styles.form}>
-        <Input
-          label="Email"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-          leftIcon="email"
-          required
-        />
-
-        <Input
-          label="Mật khẩu"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry={!showPassword}
-          leftIcon="lock"
-          rightIcon={showPassword ? 'visibility' : 'visibility-off'}
-          onRightIconPress={() => setShowPassword(!showPassword)}
-          required
-        />
-
-        <Button
-          title="Đăng nhập"
-          onPress={handleLogin}
-          loading={loading}
-          disabled={loading}
-          fullWidth
-          gradient
-          colors={['#00A86B', '#00C851']}
-          style={styles.loginButton}
-        />
-
-        <View style={styles.divider}>
-          <View style={styles.dividerLine} />
-          <Text style={styles.dividerText}>hoặc</Text>
-          <View style={styles.dividerLine} />
+    <KeyboardAvoidingView 
+      style={styles.container} 
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView 
+        style={styles.scrollView} 
+        contentContainerStyle={styles.contentContainer}
+        keyboardShouldPersistTaps="handled"
+      >
+        <StatusBar backgroundColor="#00A86B" barStyle="light-content" />
+        
+        <View style={styles.header}>
+          <View style={styles.logoContainer}>
+            <Image style={{width:90, height:90}} source={{uri:'https://cdn.discordapp.com/attachments/1351129328489992233/1414871105763803156/ic_launcher_round.png?ex=68c124e6&is=68bfd366&hm=b71867198b7fe5fe672965216cb46dd88519e18962bd4899061ba72df26e617a&'}}/>
+          </View>
+          <Text style={styles.title}>Đăng nhập</Text>
+          <Text style={styles.subtitle}>Chào mừng bạn trở lại!</Text>
         </View>
 
-        <Button
-          title="Chưa có tài khoản? Đăng ký ngay"
-          onPress={() => navigation.navigate('Register')}
-          variant="ghost"
-          fullWidth
-        />
-      </Card>
+        <View style={styles.form}>
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputLabel}>Email *</Text>
+            <View style={styles.inputWrapper}>
+              <Icon name="email" size={20} color="#666" style={styles.inputIcon} />
+              <TextInput
+                style={styles.textInput}
+                value={email}
+                onChangeText={setEmail}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                placeholder="Nhập email của bạn"
+                placeholderTextColor="#999"
+              />
+            </View>
+          </View>
 
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>
-          Bằng cách đăng nhập, bạn đồng ý với{' '}
-          <Text style={styles.linkText}>Điều khoản sử dụng</Text> và{' '}
-          <Text style={styles.linkText}>Chính sách bảo mật</Text>
-        </Text>
-      </View>
-    </ScrollView>
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputLabel}>Mật khẩu *</Text>
+            <View style={styles.inputWrapper}>
+              <Icon name="lock" size={20} color="#666" style={styles.inputIcon} />
+              <TextInput
+                style={styles.textInput}
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry={!showPassword}
+                placeholder="Nhập mật khẩu"
+                placeholderTextColor="#999"
+              />
+              <TouchableOpacity
+                onPress={() => setShowPassword(!showPassword)}
+                style={styles.eyeIcon}
+              >
+                <Icon 
+                  name={showPassword ? 'visibility' : 'visibility-off'} 
+                  size={20} 
+                  color="#666" 
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <TouchableOpacity
+            style={[styles.loginButton, loading && styles.loginButtonDisabled]}
+            onPress={handleLogin}
+            disabled={loading}
+          >
+            <Text style={styles.loginButtonText}>
+              {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
+            </Text>
+          </TouchableOpacity>
+
+          <View style={styles.divider}>
+            <View style={styles.dividerLine} />
+            <Text style={styles.dividerText}>hoặc</Text>
+            <View style={styles.dividerLine} />
+          </View>
+
+          <TouchableOpacity
+            style={styles.registerButton}
+            onPress={() => navigation.navigate('Register')}
+          >
+            <Text style={styles.registerButtonText}>
+              Chưa có tài khoản? Đăng ký ngay
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
+            Bằng cách đăng nhập, bạn đồng ý với{' '}
+            <Text style={styles.linkText}>Điều khoản sử dụng</Text> và{' '}
+            <Text style={styles.linkText}>Chính sách bảo mật</Text>
+          </Text>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -118,13 +153,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f8f9fa',
   },
+  scrollView: {
+    flex: 1,
+  },
   contentContainer: {
     flexGrow: 1,
     justifyContent: 'space-between',
   },
   header: {
     alignItems: 'center',
-    paddingTop: 60,
+    paddingTop: 50,
     paddingBottom: 40,
     backgroundColor: '#00A86B',
     borderBottomLeftRadius: 30,
@@ -155,15 +193,64 @@ const styles = StyleSheet.create({
   form: {
     marginHorizontal: 30,
     marginTop: 40,
+    backgroundColor: '#fff',
+    borderRadius: 12,
     padding: 20,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  inputContainer: {
+    marginBottom: 20,
+  },
+  inputLabel: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#333',
+    marginBottom: 8,
+  },
+  inputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    backgroundColor: '#fff',
+  },
+  inputIcon: {
+    marginRight: 10,
+  },
+  textInput: {
+    flex: 1,
+    height: 48,
+    fontSize: 16,
+    color: '#333',
+  },
+  eyeIcon: {
+    padding: 4,
   },
   loginButton: {
-    marginTop: 20,
+    backgroundColor: '#00A86B',
+    borderRadius: 8,
+    paddingVertical: 14,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  loginButtonDisabled: {
+    backgroundColor: '#ccc',
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   divider: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 30,
+    marginVertical: 20,
   },
   dividerLine: {
     flex: 1,
@@ -175,7 +262,17 @@ const styles = StyleSheet.create({
     color: '#666',
     fontSize: 14,
   },
+  registerButton: {
+    paddingVertical: 5,
+    alignItems: 'center',
+  },
+  registerButtonText: {
+    color: '#00A86B',
+    fontSize: 14,
+    fontWeight: '500',
+  },
   footer: {
+    marginTop: 20,
     paddingHorizontal: 30,
     paddingBottom: 30,
   },

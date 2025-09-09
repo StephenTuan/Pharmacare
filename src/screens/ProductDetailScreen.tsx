@@ -9,11 +9,16 @@ import {
   Alert,
   TextInput,
   Modal,
+  FlatList,
+  Dimensions,
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { productsAPI, cartAPI, reviewsAPI, authAPI } from '../services/api';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { toggleFavorite, loadFavorites } from '../store/slices/favoritesSlice';
+import { addToCart } from '../store/slices/cartSlice';
+import { productsAPI, reviewsAPI, authAPI } from '../services/api';
 import { Product, Review, RootStackParamList } from '../types';
 
 type ProductDetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'ProductDetail'>;
@@ -26,18 +31,33 @@ interface Props {
 
 const ProductDetailScreen: React.FC<Props> = ({ navigation, route }) => {
   const { productId } = route.params;
+  const dispatch = useAppDispatch();
+  const { favoriteIds } = useAppSelector(state => state.favorites);
   const [product, setProduct] = useState<Product | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [newReview, setNewReview] = useState({ rating: 5, comment: '' });
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  const isFavorite = favoriteIds.includes(productId);
+  const screenWidth = Dimensions.get('window').width;
+  
+  // Get preview images from product data or fallback to default
+  const productImages = product?.previewImages || [
+    'https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png',
+    'https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png',
+    'https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png',
+    'https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png',
+    'https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png'
+  ];
 
   useEffect(() => {
     loadProductDetail();
     loadReviews();
-  }, [productId]);
+    dispatch(loadFavorites());
+  }, [productId, dispatch]);
 
   const loadProductDetail = async () => {
     try {
@@ -60,9 +80,24 @@ const ProductDetailScreen: React.FC<Props> = ({ navigation, route }) => {
     }
   };
 
+  const handleToggleFavorite = async () => {
+    try {
+      await dispatch(toggleFavorite(productId)).unwrap();
+    } catch (error) {
+      Alert.alert('Lỗi', 'Không thể cập nhật danh sách yêu thích');
+    }
+  };
+
+  const handleImageScroll = (event: any) => {
+    const slideSize = event.nativeEvent.layoutMeasurement.width;
+    const index = event.nativeEvent.contentOffset.x / slideSize;
+    const roundIndex = Math.round(index);
+    setCurrentImageIndex(roundIndex);
+  };
+
   const handleAddToCart = async () => {
     try {
-      await cartAPI.addToCart(productId, quantity);
+      await dispatch(addToCart({ productId, quantity })).unwrap();
       Alert.alert('Thành công', `Đã thêm ${quantity} sản phẩm vào giỏ hàng`);
     } catch (error) {
       Alert.alert('Lỗi', 'Không thể thêm sản phẩm vào giỏ hàng');
@@ -157,14 +192,41 @@ const ProductDetailScreen: React.FC<Props> = ({ navigation, route }) => {
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <View style={styles.imageContainer}>
-          <Image
-            source={{ uri: product.image || 'https://via.placeholder.com/300' }}
-            style={styles.productImage}
-            resizeMode="cover"
+          <FlatList
+            data={productImages}
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            onScroll={handleImageScroll}
+            scrollEventThrottle={16}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => (
+              <Image
+                source={{ uri: item }}
+                style={[styles.productImage, { width: screenWidth }]}
+                resizeMode="cover"
+              />
+            )}
           />
+          
+          {/* Image Indicators */}
+          <View style={styles.indicatorContainer}>
+            {productImages.map((_, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.indicator,
+                  {
+                    backgroundColor: index === currentImageIndex ? '#00A86B' : '#ddd',
+                  },
+                ]}
+              />
+            ))}
+          </View>
+          
           <TouchableOpacity
             style={styles.favoriteButton}
-            onPress={() => setIsFavorite(!isFavorite)}
+            onPress={handleToggleFavorite}
           >
             <Icon
               name={isFavorite ? 'favorite' : 'favorite-border'}
@@ -326,6 +388,21 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 8,
   },
+  indicatorContainer: {
+    position: 'absolute',
+    bottom: 20,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  indicator: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    marginHorizontal: 4,
+  },
   productInfo: {
     padding: 20,
   },
@@ -356,7 +433,7 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#2196F3',
+    color: '#00A86B',
     marginBottom: 20,
   },
   quantitySection: {
@@ -410,13 +487,13 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   addReviewButton: {
-    backgroundColor: '#E3F2FD',
+    backgroundColor: '#E8F5E8',
     paddingHorizontal: 15,
     paddingVertical: 8,
     borderRadius: 8,
   },
   addReviewText: {
-    color: '#2196F3',
+    color: '#00A86B',
     fontWeight: 'bold',
   },
   reviewItem: {
@@ -439,7 +516,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#2196F3',
+    backgroundColor: '#00A86B',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 10,
@@ -480,19 +557,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#E3F2FD',
+    backgroundColor: '#E8F5E8',
     borderRadius: 8,
     padding: 15,
     marginRight: 10,
   },
   addToCartText: {
-    color: '#2196F3',
+    color: '#00A86B',
     fontWeight: 'bold',
     marginLeft: 5,
   },
   buyNowButton: {
     flex: 1,
-    backgroundColor: '#2196F3',
+    backgroundColor: '#00A86B',
     borderRadius: 8,
     padding: 15,
     alignItems: 'center',
@@ -547,7 +624,7 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
   },
   submitReviewButton: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#00A86B',
     borderRadius: 8,
     padding: 15,
     alignItems: 'center',

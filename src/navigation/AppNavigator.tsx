@@ -14,6 +14,8 @@ import ProfileScreen from '../screens/ProfileScreen';
 import ProductDetailScreen from '../screens/ProductDetailScreen';
 import CartScreen from '../screens/CartScreen';
 import CheckoutScreen from '../screens/CheckoutScreen';
+import OrderHistoryScreen from '../screens/OrderHistoryScreen';
+import OrderDetailScreen from '../screens/OrderDetailScreen';
 
 import { RootStackParamList, TabParamList } from '../types';
 
@@ -117,6 +119,20 @@ const AppNavigator = () => {
               backgroundColor: '#00A86B',
             },
             headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen 
+          name="OrderHistory" 
+          component={OrderHistoryScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen 
+          name="OrderDetail" 
+          component={OrderDetailScreen}
+          options={{
+            headerShown: false,
           }}
         />
       </Stack.Navigator>

@@ -9,62 +9,23 @@ import {
   Alert,
   StatusBar,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { productsAPI, cartAPI } from '../services/api';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { loadFavorites, removeFromFavorites } from '../store/slices/favoritesSlice';
+import { addToCart } from '../store/slices/cartSlice';
 import { Product } from '../types';
 
 const FavoritesScreen: React.FC = () => {
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const [favoriteProducts, setFavoriteProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const { favoriteProducts, loading } = useAppSelector(state => state.favorites);
 
   useEffect(() => {
-    loadFavorites();
-  }, []);
+    dispatch(loadFavorites());
+  }, [dispatch]);
 
-  useEffect(() => {
-    if (favorites.length > 0) {
-      loadFavoriteProducts();
-    } else {
-      setFavoriteProducts([]);
-      setLoading(false);
-    }
-  }, [favorites]);
-
-  const loadFavorites = async () => {
+  const handleRemoveFavorite = async (productId: string) => {
     try {
-      const favoritesStr = await AsyncStorage.getItem('favorites');
-      if (favoritesStr) {
-        setFavorites(JSON.parse(favoritesStr));
-      } else {
-        setLoading(false);
-      }
-    } catch (error) {
-      console.error('Error loading favorites:', error);
-      setLoading(false);
-    }
-  };
-
-  const loadFavoriteProducts = async () => {
-    try {
-      const allProducts = await productsAPI.getAll();
-      const favoriteItems = allProducts.filter(product => 
-        favorites.includes(product.id)
-      );
-      setFavoriteProducts(favoriteItems);
-    } catch (error) {
-      Alert.alert('Lỗi', 'Không thể tải danh sách yêu thích');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const removeFavorite = async (productId: string) => {
-    try {
-      const updatedFavorites = favorites.filter(id => id !== productId);
-      setFavorites(updatedFavorites);
-      await AsyncStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+      await dispatch(removeFromFavorites(productId)).unwrap();
     } catch (error) {
       Alert.alert('Lỗi', 'Không thể xóa khỏi danh sách yêu thích');
     }
@@ -72,7 +33,7 @@ const FavoritesScreen: React.FC = () => {
 
   const handleAddToCart = async (productId: string) => {
     try {
-      await cartAPI.addToCart(productId);
+      await dispatch(addToCart({ productId })).unwrap();
       Alert.alert('Thành công', 'Đã thêm sản phẩm vào giỏ hàng');
     } catch (error) {
       Alert.alert('Lỗi', 'Không thể thêm sản phẩm vào giỏ hàng');
@@ -82,7 +43,7 @@ const FavoritesScreen: React.FC = () => {
   const renderFavoriteProduct = ({ item }: { item: Product }) => (
     <View style={styles.productCard}>
       <Image
-        source={{ uri: item.image || 'https://via.placeholder.com/100' }}
+        source={{ uri: item.thumbnail || item.image || 'https://via.placeholder.com/100' }}
         style={styles.productImage}
         resizeMode="cover"
       />
@@ -107,7 +68,7 @@ const FavoritesScreen: React.FC = () => {
       <View style={styles.actionButtons}>
         <TouchableOpacity
           style={styles.removeButton}
-          onPress={() => removeFavorite(item.id)}
+          onPress={() => handleRemoveFavorite(item.id)}
         >
           <Icon name="favorite" size={20} color="#FF4444" />
         </TouchableOpacity>
@@ -137,7 +98,7 @@ const FavoritesScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#2196F3" barStyle="light-content" />
+      <StatusBar backgroundColor="#00A86B" barStyle="light-content" />
       
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Sản phẩm yêu thích</Text>
@@ -198,7 +159,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f9fa',
   },
   header: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#00A86B',
     paddingTop: 40,
     paddingBottom: 20,
     paddingHorizontal: 20,
@@ -288,7 +249,7 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#2196F3',
+    color: '#00A86B',
   },
   actionButtons: {
     justifyContent: 'space-between',
@@ -302,7 +263,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   addToCartButton: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#00A86B',
     borderRadius: 8,
     padding: 8,
   },
@@ -327,7 +288,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   shopButton: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#00A86B',
     borderRadius: 12,
     paddingHorizontal: 30,
     paddingVertical: 12,

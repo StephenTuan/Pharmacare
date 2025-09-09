@@ -49,7 +49,7 @@ const SplashScreen: React.FC<Props> = ({ navigation }) => {
       
       <View style={styles.logoContainer}>
         <View style={styles.logoCircle}>
-          <Text style={styles.logoText}>💊</Text>
+          <Image style={{width:90, height:90}} source={{uri:'https://cdn.discordapp.com/attachments/1351129328489992233/1414871105763803156/ic_launcher_round.png?ex=68c124e6&is=68bfd366&hm=b71867198b7fe5fe672965216cb46dd88519e18962bd4899061ba72df26e617a&'}}/>
         </View>
         <Text style={styles.appName}>PharmaCare</Text>
         <Text style={styles.tagline}>Nhà thuốc trực tuyến tin cậy</Text>

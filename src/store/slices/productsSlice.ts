@@ -27,9 +27,12 @@ export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async (_, { rejectWithValue }) => {
     try {
+      console.log('Fetching products from API...');
       const products = await productsAPI.getAll();
+      console.log('Products fetched successfully:', products.length, 'items');
       return products;
     } catch (error: any) {
+      console.error('Error fetching products:', error);
       return rejectWithValue(error.message || 'Không thể tải danh sách sản phẩm');
     }
   }

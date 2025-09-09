@@ -7,7 +7,13 @@
       "name": "Quản trị viên",
       "phone": "0901234567",
       "address": "123 Nguyễn Văn Linh, Quận 7, TP.HCM",
-      "createdAt": "2024-01-01T00:00:00.000Z"
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "loyaltyPoints": 5,
+      "cart": [],
+      "favorites": [
+        "1",
+        "3"
+      ]
     },
     {
       "id": "2",
@@ -16,1011 +22,866 @@
       "name": "Nguyễn Văn A",
       "phone": "0987654321",
       "address": "456 Lê Văn Việt, Quận 9, TP.HCM",
-      "createdAt": "2024-01-02T00:00:00.000Z"
+      "createdAt": "2024-01-02T00:00:00.000Z",
+      "loyaltyPoints": 1,
+      "cart": [],
+      "favorites": [
+        "2"
+      ]
     }
   ],
   "products": [
-  {
-    "id": "1",
-    "name": "Paracetamol 500mg",
-    "price": 25000,
-    "image": "https://via.placeholder.com/300x300/2196F3/FFFFFF?text=Paracetamol",
-    "description": "Thuốc giảm đau, hạ sốt hiệu quả. Thành phần chính: Paracetamol 500mg. Chỉ định: Giảm đau nhẹ đến vừa, hạ sốt. Liều dùng: Người lớn uống 1-2 viên/lần, 3-4 lần/ngày.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "2",
-    "name": "Vitamin C 1000mg",
-    "price": 150000,
-    "image": "https://via.placeholder.com/300x300/4CAF50/FFFFFF?text=Vitamin+C",
-    "description": "Bổ sung vitamin C tăng cường sức đề kháng. Thành phần: Acid ascorbic 1000mg. Công dụng: Tăng cường miễn dịch, chống oxy hóa, làm đẹp da.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.8,
-    "inStock": true
-  },
-  {
-    "id": "3",
-    "name": "Amoxicillin 500mg",
-    "price": 45000,
-    "image": "https://via.placeholder.com/300x300/FF9800/FFFFFF?text=Amoxicillin",
-    "description": "Kháng sinh điều trị nhiễm khuẩn. Thành phần: Amoxicillin trihydrat 500mg. Chỉ định: Nhiễm khuẩn đường hô hấp, tiết niệu, da và mô mềm.",
-    "category": "Thuốc kê đơn",
-    "rating": 4.2,
-    "inStock": true
-  },
-  {
-    "id": "4",
-    "name": "Omega-3 Fish Oil",
-    "price": 320000,
-    "image": "https://via.placeholder.com/300x300/9C27B0/FFFFFF?text=Omega-3",
-    "description": "Dầu cá Omega-3 bổ sung DHA, EPA. Công dụng: Tốt cho tim mạch, não bộ, mắt. Hỗ trợ phát triển trí não cho trẻ em và người cao tuổi.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "5",
-    "name": "Gel rửa tay khô",
-    "price": 35000,
-    "image": "https://via.placeholder.com/300x300/00BCD4/FFFFFF?text=Hand+Gel",
-    "description": "Gel rửa tay khô kháng khuẩn 75% cồn. Diệt 99.9% vi khuẩn, virus. Không cần nước, tiện lợi sử dụng mọi lúc mọi nơi.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.3,
-    "inStock": true
-  },
-  {
-    "id": "6",
-    "name": "Kem chống nắng SPF 50+",
-    "price": 180000,
-    "image": "https://via.placeholder.com/300x300/E91E63/FFFFFF?text=Sunscreen",
-    "description": "Kem chống nắng phổ rộng SPF 50+ PA+++. Bảo vệ da khỏi tia UV, chống lão hóa. Thành phần tự nhiên, không gây nhờn rít.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.7,
-    "inStock": true
-  },
-  {
-    "id": "7",
-    "name": "Nhiệt kế điện tử",
-    "price": 250000,
-    "image": "https://via.placeholder.com/300x300/607D8B/FFFFFF?text=Thermometer",
-    "description": "Nhiệt kế điện tử đo trán không tiếp xúc. Đo nhanh trong 1 giây, độ chính xác cao ±0.2°C. Có báo động sốt, nhớ 32 lần đo.",
-    "category": "Thiết bị y tế",
-    "rating": 4.4,
-    "inStock": true
-  },
-  {
-    "id": "8",
-    "name": "Thuốc ho Prospan",
-    "price": 85000,
-    "image": "https://via.placeholder.com/300x300/795548/FFFFFF?text=Prospan",
-    "description": "Siro ho từ thảo dược tự nhiên. Thành phần: Cao khô lá thường xuân. Giúp long đờm, giảm ho, phù hợp cho cả trẻ em và người lớn.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.1,
-    "inStock": true
-  },
-  {
-    "id": "9",
-    "name": "Viên uống bổ khớp Glucosamine",
-    "price": 450000,
-    "image": "https://via.placeholder.com/300x300/8BC34A/FFFFFF?text=Glucosamine",
-    "description": "Viên uống hỗ trợ chức năng xương khớp. Thành phần chính: Glucosamine Sulfate. Giúp tăng cường dịch khớp, giảm đau khớp.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.7,
-    "inStock": true
-  },
-  {
-    "id": "10",
-    "name": "Thuốc nhỏ mắt V.Rohto",
-    "price": 30000,
-    "image": "https://via.placeholder.com/300x300/03A9F4/FFFFFF?text=V.Rohto",
-    "description": "Thuốc nhỏ mắt làm dịu mắt, giảm mỏi mắt. Thành phần: Tetrahydrozoline HCl, Vitamin B6. Giúp giảm ngứa, đỏ mắt do mệt mỏi.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "11",
-    "name": "Sữa rửa mặt Cetaphil",
-    "price": 120000,
-    "image": "https://via.placeholder.com/300x300/F44336/FFFFFF?text=Cetaphil",
-    "description": "Sữa rửa mặt dịu nhẹ, không gây kích ứng. Dành cho da nhạy cảm. Giúp làm sạch sâu, giữ ẩm cho da.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.9,
-    "inStock": true
-  },
-  {
-    "id": "12",
-    "name": "Thuốc cảm cúm Coldflu",
-    "price": 55000,
-    "image": "https://via.placeholder.com/300x300/FF5722/FFFFFF?text=Coldflu",
-    "description": "Thuốc điều trị các triệu chứng cảm cúm, hắt hơi, sổ mũi. Thành phần: Paracetamol, Phenylephrine, Chlorpheniramine. Liều dùng: 1 viên/lần, 2-3 lần/ngày.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.3,
-    "inStock": true
-  },
-  {
-    "id": "13",
-    "name": "Siro ăn ngon cho bé",
-    "price": 180000,
-    "image": "https://via.placeholder.com/300x300/FFC107/FFFFFF?text=Siro+an+ngon",
-    "description": "Bổ sung Lysine, kẽm, vitamin nhóm B. Giúp bé ăn ngon miệng hơn, tăng cường hấp thu dưỡng chất.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "14",
-    "name": "Băng gạc y tế",
-    "price": 15000,
-    "image": "https://via.placeholder.com/300x300/9E9E9E/FFFFFF?text=Bandage",
-    "description": "Băng gạc y tế vô trùng, dùng để băng bó vết thương. Thấm hút tốt, không dính vào vết thương.",
-    "category": "Thiết bị y tế",
-    "rating": 4.0,
-    "inStock": true
-  },
-  {
-    "id": "15",
-    "name": "Khẩu trang y tế 4 lớp",
-    "price": 60000,
-    "image": "https://via.placeholder.com/300x300/673AB7/FFFFFF?text=Mask",
-    "description": "Khẩu trang y tế 4 lớp kháng khuẩn. Chống bụi mịn, vi khuẩn và giọt bắn. Dây đeo co giãn thoải mái.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.8,
-    "inStock": true
-  },
-  {
-    "id": "16",
-    "name": "Kem bôi ngoài da Hydrocortisone",
-    "price": 40000,
-    "image": "https://via.placeholder.com/300x300/009688/FFFFFF?text=Hydrocortisone",
-    "description": "Kem bôi ngoài da giảm ngứa, sưng, viêm. Thành phần: Hydrocortisone acetate. Chỉ định: Eczema, viêm da, côn trùng cắn.",
-    "category": "Thuốc kê đơn",
-    "rating": 4.1,
-    "inStock": true
-  },
-  {
-    "id": "17",
-    "name": "Sữa bột Ensure Gold",
-    "price": 750000,
-    "image": "https://via.placeholder.com/300x300/4CAF50/FFFFFF?text=Ensure",
-    "description": "Sữa dinh dưỡng đầy đủ, cân bằng cho người lớn tuổi. Giúp phục hồi sức khỏe, tăng cường sức đề kháng.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.9,
-    "inStock": true
-  },
-  {
-    "id": "18",
-    "name": "Nước súc miệng Listerine",
-    "price": 75000,
-    "image": "https://via.placeholder.com/300x300/2196F3/FFFFFF?text=Listerine",
-    "description": "Nước súc miệng diệt khuẩn, làm sạch khoang miệng. Giúp hơi thở thơm mát, ngăn ngừa sâu răng.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "19",
-    "name": "Máy đo huyết áp Omron",
-    "price": 950000,
-    "image": "https://via.placeholder.com/300x300/FF9800/FFFFFF?text=Omron",
-    "description": "Máy đo huyết áp điện tử bắp tay. Độ chính xác cao, dễ sử dụng. Có chức năng cảnh báo nhịp tim bất thường.",
-    "category": "Thiết bị y tế",
-    "rating": 4.8,
-    "inStock": true
-  },
-  {
-    "id": "20",
-    "name": "Kem dưỡng ẩm Nivea",
-    "price": 85000,
-    "image": "https://via.placeholder.com/300x300/E91E63/FFFFFF?text=Nivea",
-    "description": "Kem dưỡng ẩm toàn thân, giúp da mềm mại, mịn màng. Không gây nhờn rít, phù hợp mọi loại da.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "21",
-    "name": "Thuốc nhỏ mũi Otrivin",
-    "price": 40000,
-    "image": "https://via.placeholder.com/300x300/00BCD4/FFFFFF?text=Otrivin",
-    "description": "Thuốc nhỏ mũi làm giảm nghẹt mũi, sổ mũi. Thành phần: Xylometazoline. Tác dụng nhanh, kéo dài.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.2,
-    "inStock": true
-  },
-  {
-    "id": "22",
-    "name": "Thực phẩm chức năng Bổ Gan",
-    "price": 280000,
-    "image": "https://via.placeholder.com/300x300/9C27B0/FFFFFF?text=Bo+Gan",
-    "description": "Viên uống hỗ trợ chức năng gan. Thành phần: Silymarin, Actiso. Giúp giải độc gan, bảo vệ tế bào gan.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "23",
-    "name": "Thuốc đau dạ dày Gaviscon",
-    "price": 60000,
-    "image": "https://via.placeholder.com/300x300/795548/FFFFFF?text=Gaviscon",
-    "description": "Thuốc trị trào ngược dạ dày, ợ nóng. Thành phần: Sodium Alginate, Calcium Carbonate. Tạo lớp màng bảo vệ dạ dày.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "24",
-    "name": "Nước muối sinh lý",
-    "price": 10000,
-    "image": "https://via.placeholder.com/300x300/607D8B/FFFFFF?text=Nuoc+muoi",
-    "description": "Nước muối sinh lý 0.9% NaCl. Dùng để rửa mắt, rửa mũi, súc họng. An toàn cho mọi đối tượng.",
-    "category": "Thiết bị y tế",
-    "rating": 4.7,
-    "inStock": true
-  },
-  {
-    "id": "25",
-    "name": "Dầu tràm khuynh diệp",
-    "price": 90000,
-    "image": "https://via.placeholder.com/300x300/8BC34A/FFFFFF?text=Dau+tram",
-    "description": "Dầu tràm gió giúp giữ ấm cơ thể, phòng cảm lạnh. Phù hợp cho trẻ em và người lớn.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.4,
-    "inStock": true
-  },
-  {
-    "id": "26",
-    "name": "Thuốc tiêu chảy Smecta",
-    "price": 25000,
-    "image": "https://via.placeholder.com/300x300/F44336/FFFFFF?text=Smecta",
-    "description": "Thuốc điều trị tiêu chảy cấp. Thành phần: Dioctahedral Smectite. Giúp hấp thu độc tố, bảo vệ niêm mạc ruột.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.3,
-    "inStock": true
-  },
-  {
-    "id": "27",
-    "name": "Kem đánh răng P/S",
-    "price": 20000,
-    "image": "https://via.placeholder.com/300x300/03A9F4/FFFFFF?text=P/S",
-    "description": "Kem đánh răng bảo vệ nướu, ngăn ngừa sâu răng. Hương bạc hà tươi mát.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "28",
-    "name": "Que thử thai Quickstrip",
-    "price": 30000,
-    "image": "https://via.placeholder.com/300x300/FF5722/FFFFFF?text=Quickstrip",
-    "description": "Que thử thai nhanh, chính xác. Độ nhạy cao, cho kết quả sau 5 phút.",
-    "category": "Thiết bị y tế",
-    "rating": 4.2,
-    "inStock": true
-  },
-  {
-    "id": "29",
-    "name": "Viên uống Bổ não Ginkgo Biloba",
-    "price": 350000,
-    "image": "https://via.placeholder.com/300x300/FFC107/FFFFFF?text=Ginkgo+Biloba",
-    "description": "Thực phẩm chức năng hỗ trợ tuần hoàn máu não. Thành phần: Cao Bạch quả. Giúp cải thiện trí nhớ, giảm chóng mặt.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.7,
-    "inStock": true
-  },
-  {
-    "id": "30",
-    "name": "Kem trị mụn La Roche-Posay",
-    "price": 250000,
-    "image": "https://via.placeholder.com/300x300/E91E63/FFFFFF?text=La+Roche-Posay",
-    "description": "Kem trị mụn chuyên sâu, giảm sưng viêm. Giúp làm mờ thâm, ngăn ngừa mụn tái phát.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.8,
-    "inStock": true
-  },
-  {
-    "id": "31",
-    "name": "Siro ho Astex",
-    "price": 70000,
-    "image": "https://via.placeholder.com/300x300/2196F3/FFFFFF?text=Astex",
-    "description": "Siro ho từ thảo dược, giảm ho, long đờm. Phù hợp cho trẻ em, người lớn. Hương dâu tây dễ uống.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.4,
-    "inStock": true
-  },
-  {
-    "id": "32",
-    "name": "Bổ sung sắt cho bà bầu",
-    "price": 180000,
-    "image": "https://via.placeholder.com/300x300/9C27B0/FFFFFF?text=Sắt+bầu",
-    "description": "Viên uống bổ sung sắt, Acid Folic cho phụ nữ mang thai. Giúp phòng ngừa thiếu máu do thiếu sắt.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "33",
-    "name": "Khẩu trang N95",
-    "price": 120000,
-    "image": "https://via.placeholder.com/300x300/673AB7/FFFFFF?text=N95+Mask",
-    "description": "Khẩu trang N95 chống bụi mịn, virus. Có van thở, dễ thở hơn khi đeo lâu. Dây đeo chắc chắn.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.9,
-    "inStock": true
-  },
-  {
-    "id": "34",
-    "name": "Cồn y tế 70 độ",
-    "price": 20000,
-    "image": "https://via.placeholder.com/300x300/009688/FFFFFF?text=Cồn",
-    "description": "Cồn y tế 70 độ. Dùng để sát khuẩn, tiệt trùng dụng cụ y tế và bề mặt.",
-    "category": "Thiết bị y tế",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "35",
-    "name": "Thuốc chống dị ứng Loratadine",
-    "price": 35000,
-    "image": "https://via.placeholder.com/300x300/795548/FFFFFF?text=Loratadine",
-    "description": "Thuốc kháng histamin trị dị ứng. Giảm các triệu chứng: hắt hơi, sổ mũi, ngứa, mề đay. Không gây buồn ngủ.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.1,
-    "inStock": true
-  },
-  {
-    "id": "36",
-    "name": "Dầu gội Selsun",
-    "price": 100000,
-    "image": "https://via.placeholder.com/300x300/F44336/FFFFFF?text=Selsun",
-    "description": "Dầu gội trị gàu, nấm da đầu. Thành phần: Selenium Sulfide. Giúp giảm ngứa, sạch gàu hiệu quả.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "37",
-    "name": "Viên uống Bổ sung canxi",
-    "price": 250000,
-    "image": "https://via.placeholder.com/300x300/4CAF50/FFFFFF?text=Calcium",
-    "description": "Bổ sung canxi, vitamin D3, K2. Hỗ trợ xương chắc khỏe, phòng loãng xương. Dùng cho người lớn tuổi, phụ nữ có thai.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.7,
-    "inStock": true
-  },
-  {
-    "id": "38",
-    "name": "Nhiệt kế thủy ngân",
-    "price": 50000,
-    "image": "https://via.placeholder.com/300x300/607D8B/FFFFFF?text=Thermometer",
-    "description": "Nhiệt kế thủy ngân, đo nhiệt độ cơ thể. An toàn, chính xác. Đọc kết quả dễ dàng.",
-    "category": "Thiết bị y tế",
-    "rating": 4.0,
-    "inStock": true
-  },
-  {
-    "id": "39",
-    "name": "Kem đánh răng Sensodyne",
-    "price": 60000,
-    "image": "https://via.placeholder.com/300x300/03A9F4/FFFFFF?text=Sensodyne",
-    "description": "Kem đánh răng dành cho răng nhạy cảm. Giúp giảm ê buốt, bảo vệ men răng hiệu quả.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.8,
-    "inStock": true
-  },
-  {
-    "id": "40",
-    "name": "Kem trị sẹo Contractubex",
-    "price": 150000,
-    "image": "https://via.placeholder.com/300x300/FF5722/FFFFFF?text=Contractubex",
-    "description": "Kem trị sẹo lồi, sẹo lõm, sẹo do bỏng. Giúp làm mềm, phẳng và mờ sẹo cũ, sẹo mới.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "41",
-    "name": "Bông gòn y tế",
-    "price": 12000,
-    "image": "https://via.placeholder.com/300x300/9E9E9E/FFFFFF?text=Cotton",
-    "description": "Bông gòn y tế tiệt trùng. Dùng để sát trùng, vệ sinh vết thương. Thấm hút tốt.",
-    "category": "Thiết bị y tế",
-    "rating": 4.3,
-    "inStock": true
-  },
-  {
-    "id": "42",
-    "name": "Thuốc tiêu hóa Phosphalugel",
-    "price": 70000,
-    "image": "https://via.placeholder.com/300x300/FFC107/FFFFFF?text=Phosphalugel",
-    "description": "Thuốc trị đau dạ dày, viêm loét dạ dày. Thành phần: Nhôm Phosphat. Giúp trung hòa axit, bảo vệ niêm mạc.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "43",
-    "name": "Siro ho Prospan",
-    "price": 85000,
-    "image": "https://via.placeholder.com/300x300/795548/FFFFFF?text=Prospan",
-    "description": "Siro ho từ thảo dược tự nhiên. Thành phần: Cao khô lá thường xuân. Giúp long đờm, giảm ho, phù hợp cho cả trẻ em và người lớn.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.1,
-    "inStock": true
-  },
-  {
-    "id": "44",
-    "name": "Dầu gội đầu thảo dược",
-    "price": 95000,
-    "image": "https://via.placeholder.com/300x300/8BC34A/FFFFFF?text=Herbal+Shampoo",
-    "description": "Dầu gội chiết xuất từ bồ kết, hương nhu, sả. Giúp tóc mềm mượt, chắc khỏe, giảm gãy rụng.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.7,
-    "inStock": true
-  },
-  {
-    "id": "45",
-    "name": "Bổ sung Vitamin A",
-    "price": 150000,
-    "image": "https://via.placeholder.com/300x300/E91E63/FFFFFF?text=Vitamin+A",
-    "description": "Viên uống bổ sung vitamin A. Hỗ trợ thị lực, làm đẹp da, tăng cường miễn dịch.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "46",
-    "name": "Tăm bông y tế",
-    "price": 18000,
-    "image": "https://via.placeholder.com/300x300/00BCD4/FFFFFF?text=Cotton+Swabs",
-    "description": "Tăm bông y tế tiệt trùng. Dùng để vệ sinh tai, mũi, làm sạch vết thương.",
-    "category": "Thiết bị y tế",
-    "rating": 4.0,
-    "inStock": true
-  },
-  {
-    "id": "47",
-    "name": "Khăn giấy ướt kháng khuẩn",
-    "price": 25000,
-    "image": "https://via.placeholder.com/300x300/607D8B/FFFFFF?text=Wet+Wipes",
-    "description": "Khăn giấy ướt kháng khuẩn, không cồn. Dùng để vệ sinh tay, mặt. Mềm mại, an toàn cho da.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.4,
-    "inStock": true
-  },
-  {
-    "id": "48",
-    "name": "Thuốc ho cảm cúm",
-    "price": 50000,
-    "image": "https://via.placeholder.com/300x300/FF9800/FFFFFF?text=Cold+Medicine",
-    "description": "Thuốc điều trị các triệu chứng cảm cúm, ho khan, ho có đờm. Giúp giảm đau họng, hạ sốt.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.2,
-    "inStock": true
-  },
-  {
-    "id": "49",
-    "name": "Viên sủi Vitamin C",
-    "price": 50000,
-    "image": "https://via.placeholder.com/300x300/4CAF50/FFFFFF?text=Vitamin+C+Effervescent",
-    "description": "Viên sủi bổ sung vitamin C. Tăng cường sức đề kháng, chống oxy hóa. Hương cam dễ uống.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.8,
-    "inStock": true
-  },
-  {
-    "id": "50",
-    "name": "Máy đo đường huyết",
-    "price": 800000,
-    "image": "https://via.placeholder.com/300x300/673AB7/FFFFFF?text=Blood+Glucose+Monitor",
-    "description": "Máy đo đường huyết Accu-Chek. Đo nhanh, chính xác. Bộ nhớ lưu trữ kết quả.",
-    "category": "Thiết bị y tế",
-    "rating": 4.9,
-    "inStock": true
-  },
-  {
-    "id": "51",
-    "name": "Dầu gội đầu Dược liệu",
-    "price": 120000,
-    "image": "https://via.placeholder.com/300x300/009688/FFFFFF?text=Herbal+Shampoo",
-    "description": "Dầu gội dược liệu ngừa rụng tóc. Chiết xuất từ bồ kết, vỏ bưởi, hà thủ ô. Giúp tóc chắc khỏe từ gốc.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "52",
-    "name": "Thuốc xịt mũi Xylometazoline",
-    "price": 45000,
-    "image": "https://via.placeholder.com/300x300/795548/FFFFFF?text=Xylometazoline",
-    "description": "Thuốc xịt mũi điều trị nghẹt mũi. Giúp thông mũi nhanh, kéo dài 12 giờ.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.2,
-    "inStock": true
-  },
-  {
-    "id": "53",
-    "name": "Viên uống Trị táo bón",
-    "price": 80000,
-    "image": "https://via.placeholder.com/300x300/F44336/FFFFFF?text=Táo+bón",
-    "description": "Viên uống trị táo bón hiệu quả. Thành phần: Senna, Fructo-oligosaccharides. Giúp nhuận tràng, làm mềm phân.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.1,
-    "inStock": true
-  },
-  {
-    "id": "54",
-    "name": "Kem đánh răng Colgate",
-    "price": 25000,
-    "image": "https://via.placeholder.com/300x300/03A9F4/FFFFFF?text=Colgate",
-    "description": "Kem đánh răng bảo vệ sâu răng. Công thức flouride giúp răng chắc khỏe.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.4,
-    "inStock": true
-  },
-  {
-    "id": "55",
-    "name": "Bộ sơ cứu y tế",
-    "price": 200000,
-    "image": "https://via.placeholder.com/300x300/9E9E9E/FFFFFF?text=First+Aid+Kit",
-    "description": "Hộp sơ cứu đầy đủ: băng gạc, cồn, gạc y tế, thuốc đỏ. Tiện lợi cho gia đình.",
-    "category": "Thiết bị y tế",
-    "rating": 4.8,
-    "inStock": true
-  },
-  {
-    "id": "56",
-    "name": "Dầu nóng xoa bóp",
-    "price": 50000,
-    "image": "https://via.placeholder.com/300x300/FF5722/FFFFFF?text=Dau+nong",
-    "description": "Dầu nóng xoa bóp giảm đau cơ, khớp. Thành phần: Methyl Salicylate, Menthol. Giúp làm ấm cơ thể, giảm đau nhanh.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.3,
-    "inStock": true
-  },
-  {
-    "id": "57",
-    "name": "Viên uống Dưỡng da collagen",
-    "price": 450000,
-    "image": "https://via.placeholder.com/300x300/FFC107/FFFFFF?text=Collagen",
-    "description": "Viên uống bổ sung collagen, vitamin E. Giúp da săn chắc, đàn hồi, giảm nếp nhăn.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.9,
-    "inStock": true
-  },
-  {
-    "id": "58",
-    "name": "Kem trị nẻ Bepanthen",
-    "price": 65000,
-    "image": "https://via.placeholder.com/300x300/E91E63/FFFFFF?text=Bepanthen",
-    "description": "Kem trị hăm tã, nứt nẻ da cho trẻ em và người lớn. Giúp làm dịu da, tái tạo da tổn thương.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.7,
-    "inStock": true
-  },
-  {
-    "id": "59",
-    "name": "Thuốc ho long đờm Acemuc",
-    "price": 40000,
-    "image": "https://via.placeholder.com/300x300/4CAF50/FFFFFF?text=Acemuc",
-    "description": "Thuốc tiêu chất nhầy, long đờm. Thành phần: Acetylcysteine. Giúp làm loãng đờm, dễ tống đờm ra ngoài.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.4,
-    "inStock": true
-  },
-  {
-    "id": "60",
-    "name": "Băng dán cá nhân",
-    "price": 10000,
-    "image": "https://via.placeholder.com/300x300/2196F3/FFFFFF?text=Band-Aid",
-    "description": "Băng dán cá nhân chống nước, tiện lợi. Dùng để bảo vệ vết thương nhỏ, trầy xước.",
-    "category": "Thiết bị y tế",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "61",
-    "name": "Nước súc miệng trẻ em",
-    "price": 50000,
-    "image": "https://via.placeholder.com/300x300/FF9800/FFFFFF?text=Kids+Mouthwash",
-    "description": "Nước súc miệng không cồn dành cho trẻ em. Hương trái cây, giúp bé thích thú vệ sinh răng miệng.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "62",
-    "name": "Thuốc trị nấm da Canesten",
-    "price": 80000,
-    "image": "https://via.placeholder.com/300x300/9C27B0/FFFFFF?text=Canesten",
-    "description": "Kem bôi trị nấm da, nấm kẽ, nấm móng. Thành phần: Clotrimazole. Giúp giảm ngứa, làm dịu da.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.3,
-    "inStock": true
-  },
-  {
-    "id": "63",
-    "name": "Viên uống Bổ mắt",
-    "price": 280000,
-    "image": "https://via.placeholder.com/300x300/00BCD4/FFFFFF?text=Bo+mắt",
-    "description": "Viên uống bổ mắt, chống mỏi mắt. Thành phần: Lutein, Zeaxanthin, Vitamin A. Hỗ trợ thị lực, phòng ngừa thoái hóa điểm vàng.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.7,
-    "inStock": true
-  },
-  {
-    "id": "64",
-    "name": "Túi chườm nóng lạnh",
-    "price": 70000,
-    "image": "https://via.placeholder.com/300x300/607D8B/FFFFFF?text=Hot+Cold+Pack",
-    "description": "Túi chườm nóng lạnh đa năng. Dùng để giảm đau cơ, giảm sưng, hạ sốt.",
-    "category": "Thiết bị y tế",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "65",
-    "name": "Kem chống nắng cho bé",
-    "price": 150000,
-    "image": "https://via.placeholder.com/300x300/8BC34A/FFFFFF?text=Sunscreen+Kids",
-    "description": "Kem chống nắng vật lý dành cho trẻ em. Công thức dịu nhẹ, không cay mắt. Bảo vệ da bé khỏi tia UV.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.8,
-    "inStock": true
-  },
-  {
-    "id": "66",
-    "name": "Kem đánh răng trà xanh",
-    "price": 30000,
-    "image": "https://via.placeholder.com/300x300/F44336/FFFFFF?text=Green+Tea+Toothpaste",
-    "description": "Kem đánh răng chiết xuất trà xanh. Giúp ngừa sâu răng, bảo vệ nướu, hơi thở thơm mát.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.4,
-    "inStock": true
-  },
-  {
-    "id": "67",
-    "name": "Thuốc dạ dày Pepsan",
-    "price": 60000,
-    "image": "https://via.placeholder.com/300x300/03A9F4/FFFFFF?text=Pepsan",
-    "description": "Thuốc dạ dày dạng gel. Giúp giảm đau, ợ nóng, trào ngược dạ dày thực quản.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "68",
-    "name": "Viên uống Dầu cá",
-    "price": 120000,
-    "image": "https://via.placeholder.com/300x300/FF5722/FFFFFF?text=Fish+Oil+Pill",
-    "description": "Viên uống bổ sung Omega-3. Tốt cho tim mạch, não bộ. Hỗ trợ giảm cholesterol.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "69",
-    "name": "Máy xông khí dung",
-    "price": 600000,
-    "image": "https://via.placeholder.com/300x300/FFC107/FFFFFF?text=Nebulizer",
-    "description": "Máy xông khí dung Omron. Dùng để điều trị các bệnh hô hấp: hen suyễn, viêm phế quản.",
-    "category": "Thiết bị y tế",
-    "rating": 4.8,
-    "inStock": true
-  },
-  {
-    "id": "70",
-    "name": "Kem chống muỗi",
-    "price": 45000,
-    "image": "https://via.placeholder.com/300x300/E91E63/FFFFFF?text=Mosquito+Cream",
-    "description": "Kem chống muỗi Remos. Bảo vệ da khỏi muỗi và côn trùng cắn. Mùi hương tự nhiên.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.2,
-    "inStock": true
-  },
-  {
-    "id": "71",
-    "name": "Thuốc hạ sốt trẻ em",
-    "price": 35000,
-    "image": "https://via.placeholder.com/300x300/4CAF50/FFFFFF?text=Kids+Fever+Medicine",
-    "description": "Siro hạ sốt Hapacol cho trẻ em. Thành phần: Paracetamol. Giảm đau, hạ sốt nhanh.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.7,
-    "inStock": true
-  },
-  {
-    "id": "72",
-    "name": "Viên uống Đẹp da Collagen",
-    "price": 350000,
-    "image": "https://via.placeholder.com/300x300/2196F3/FFFFFF?text=Collagen+Pills",
-    "description": "Viên uống bổ sung Collagen, chống lão hóa da. Giúp da căng bóng, mịn màng.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.8,
-    "inStock": true
-  },
-  {
-    "id": "73",
-    "name": "Sữa tắm Johnson's Baby",
-    "price": 80000,
-    "image": "https://via.placeholder.com/300x300/9C27B0/FFFFFF?text=Johnson's+Baby",
-    "description": "Sữa tắm gội toàn thân dịu nhẹ cho bé. Không cay mắt, an toàn cho làn da nhạy cảm của trẻ.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.9,
-    "inStock": true
-  },
-  {
-    "id": "74",
-    "name": "Bình xịt họng thảo dược",
-    "price": 50000,
-    "image": "https://via.placeholder.com/300x300/00BCD4/FFFFFF?text=Throat+Spray",
-    "description": "Bình xịt họng keo ong. Giúp giảm đau họng, làm dịu cổ họng. Kháng khuẩn tự nhiên.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "75",
-    "name": "Kem dưỡng da tay",
-    "price": 60000,
-    "image": "https://via.placeholder.com/300x300/607D8B/FFFFFF?text=Hand+Cream",
-    "description": "Kem dưỡng da tay Vaseline. Giúp da tay mềm mại, chống khô nẻ. Thấm nhanh không nhờn.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "76",
-    "name": "Viên uống bổ sung kẽm",
-    "price": 150000,
-    "image": "https://via.placeholder.com/300x300/8BC34A/FFFFFF?text=Zinc+Pills",
-    "description": "Viên uống bổ sung kẽm. Tăng cường hệ miễn dịch, tốt cho da và tóc. Hỗ trợ tiêu hóa.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.4,
-    "inStock": true
-  },
-  {
-    "id": "77",
-    "name": "Gạc rơ lưỡi cho bé",
-    "price": 25000,
-    "image": "https://via.placeholder.com/300x300/F44336/FFFFFF?text=Baby+Tongue+Cleaner",
-    "description": "Gạc rơ lưỡi tiệt trùng cho bé. Dùng để vệ sinh miệng, lưỡi, nướu cho trẻ sơ sinh.",
-    "category": "Thiết bị y tế",
-    "rating": 4.7,
-    "inStock": true
-  },
-  {
-    "id": "78",
-    "name": "Thuốc đau răng",
-    "price": 40000,
-    "image": "https://via.placeholder.com/300x300/03A9F4/FFFFFF?text=Toothache+Pills",
-    "description": "Thuốc giảm đau răng, đau nướu. Thành phần: Paracetamol, Ibuprofen. Giúp giảm đau nhanh chóng.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.3,
-    "inStock": true
-  },
-  {
-    "id": "79",
-    "name": "Kem đánh răng trẻ em",
-    "price": 28000,
-    "image": "https://via.placeholder.com/300x300/FF5722/FFFFFF?text=Kids+Toothpaste",
-    "description": "Kem đánh răng có flouride cho trẻ em. Hương dâu, cam. Giúp ngừa sâu răng sữa.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "80",
-    "name": "Bổ sung sắt cho trẻ em",
-    "price": 150000,
-    "image": "https://via.placeholder.com/300x300/FFC107/FFFFFF?text=Kids+Iron",
-    "description": "Siro bổ sung sắt cho trẻ em. Giúp phòng ngừa thiếu máu, tăng cường phát triển thể chất.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "81",
-    "name": "Nước rửa tay diệt khuẩn",
-    "price": 40000,
-    "image": "https://via.placeholder.com/300x300/E91E63/FFFFFF?text=Hand+Wash",
-    "description": "Nước rửa tay kháng khuẩn Lifebuoy. Diệt 99.9% vi khuẩn, bảo vệ khỏi mầm bệnh.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.7,
-    "inStock": true
-  },
-  {
-    "id": "82",
-    "name": "Thuốc trị đau bụng",
-    "price": 30000,
-    "image": "https://via.placeholder.com/300x300/4CAF50/FFFFFF?text=Pain+Medicine",
-    "description": "Thuốc giảm đau bụng, đau co thắt. Thành phần: Drotaverine. Tác dụng nhanh, hiệu quả.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.1,
-    "inStock": true
-  },
-  {
-    "id": "83",
-    "name": "Máy đo nồng độ oxy",
-    "price": 350000,
-    "image": "https://via.placeholder.com/300x300/2196F3/FFFFFF?text=Pulse+Oximeter",
-    "description": "Máy đo nồng độ oxy trong máu và nhịp tim. Đo nhanh, chính xác, màn hình LED rõ nét.",
-    "category": "Thiết bị y tế",
-    "rating": 4.9,
-    "inStock": true
-  },
-  {
-    "id": "84",
-    "name": "Kem chống rạn da",
-    "price": 180000,
-    "image": "https://via.placeholder.com/300x300/9C27B0/FFFFFF?text=Stretch+Mark+Cream",
-    "description": "Kem chống rạn da cho bà bầu. Giúp da đàn hồi tốt, giảm hình thành vết rạn.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "85",
-    "name": "Viên uống Bổ sung Vitamin E",
-    "price": 100000,
-    "image": "https://via.placeholder.com/300x300/00BCD4/FFFFFF?text=Vitamin+E+Pills",
-    "description": "Viên uống bổ sung vitamin E. Chống oxy hóa, làm đẹp da, mượt tóc.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "86",
-    "name": "Gel bôi trĩ",
-    "price": 90000,
-    "image": "https://via.placeholder.com/300x300/607D8B/FFFFFF?text=Hemorrhoid+Gel",
-    "description": "Gel bôi trĩ làm dịu cơn đau, sưng, ngứa. Giúp co búi trĩ, giảm chảy máu.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.2,
-    "inStock": true
-  },
-  {
-    "id": "87",
-    "name": "Băng gạc vết thương lớn",
-    "price": 30000,
-    "image": "https://via.placeholder.com/300x300/8BC34A/FFFFFF?text=Large+Bandage",
-    "description": "Băng gạc vết thương lớn, vô trùng. Dùng cho các vết thương sâu, rộng.",
-    "category": "Thiết bị y tế",
-    "rating": 4.0,
-    "inStock": true
-  },
-  {
-    "id": "88",
-    "name": "Thuốc nhỏ mắt trẻ em",
-    "price": 25000,
-    "image": "https://via.placeholder.com/300x300/F44336/FFFFFF?text=Kids+Eye+Drops",
-    "description": "Thuốc nhỏ mắt Natri Clorid 0.9%. Dùng để vệ sinh mắt cho trẻ em, làm sạch bụi bẩn.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.4,
-    "inStock": true
-  },
-  {
-    "id": "89",
-    "name": "Băng dán hạ sốt",
-    "price": 20000,
-    "image": "https://via.placeholder.com/300x300/03A9F4/FFFFFF?text=Fever+Patch",
-    "description": "Băng dán hạ sốt Pigeon. Giúp hạ nhiệt, giảm sốt hiệu quả. An toàn cho trẻ nhỏ.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.8,
-    "inStock": true
-  },
-  {
-    "id": "90",
-    "name": "Sữa rửa mặt trị mụn",
-    "price": 150000,
-    "image": "https://via.placeholder.com/300x300/FF5722/FFFFFF?text=Acne+Face+Wash",
-    "description": "Sữa rửa mặt ngăn ngừa mụn. Chứa Salicylic Acid, giúp làm sạch sâu, kiểm soát dầu.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.7,
-    "inStock": true
-  },
-  {
-    "id": "91",
-    "name": "Viên uống Bổ sung Coenzyme Q10",
-    "price": 250000,
-    "image": "https://via.placeholder.com/300x300/FFC107/FFFFFF?text=Coenzyme+Q10",
-    "description": "Thực phẩm chức năng hỗ trợ tim mạch. Tăng cường năng lượng, chống oxy hóa. Tốt cho người già.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "92",
-    "name": "Thuốc trị đau lưng",
-    "price": 60000,
-    "image": "https://via.placeholder.com/300x300/E91E63/FFFFFF?text=Back+Pain+Medicine",
-    "description": "Thuốc giảm đau nhức cơ, xương, khớp. Thành phần: Diclofenac. Giúp giảm đau lưng, thoái hóa khớp.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.3,
-    "inStock": true
-  },
-  {
-    "id": "93",
-    "name": "Cân sức khỏe điện tử",
-    "price": 280000,
-    "image": "https://via.placeholder.com/300x300/4CAF50/FFFFFF?text=Digital+Scale",
-    "description": "Cân sức khỏe điện tử. Màn hình LCD, chịu lực tốt. Đo trọng lượng chính xác.",
-    "category": "Thiết bị y tế",
-    "rating": 4.5,
-    "inStock": true
-  },
-  {
-    "id": "94",
-    "name": "Sữa tắm thảo dược",
-    "price": 95000,
-    "image": "https://via.placeholder.com/300x300/2196F3/FFFFFF?text=Herbal+Shower+Gel",
-    "description": "Sữa tắm chiết xuất thảo dược. Giúp làm sạch da, dưỡng ẩm. Mùi hương tự nhiên, thư giãn.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.7,
-    "inStock": true
-  },
-  {
-    "id": "95",
-    "name": "Thuốc nhỏ tai",
-    "price": 35000,
-    "image": "https://via.placeholder.com/300x300/FF9800/FFFFFF?text=Ear+Drops",
-    "description": "Thuốc nhỏ tai trị viêm tai giữa. Giúp giảm đau, làm sạch tai.",
-    "category": "Thuốc kê đơn",
-    "rating": 4.0,
-    "inStock": true
-  },
-  {
-    "id": "96",
-    "name": "Kem trị nấm da",
-    "price": 70000,
-    "image": "https://via.placeholder.com/300x300/9C27B0/FFFFFF?text=Fungal+Cream",
-    "description": "Kem bôi trị nấm ngoài da. Thành phần: Ketoconazole. Hiệu quả với nấm da, lang ben.",
-    "category": "Thuốc không kê đơn",
-    "rating": 4.2,
-    "inStock": true
-  },
-  {
-    "id": "97",
-    "name": "Bổ sung Vitamin B12",
-    "price": 150000,
-    "image": "https://via.placeholder.com/300x300/00BCD4/FFFFFF?text=Vitamin+B12",
-    "description": "Viên uống bổ sung Vitamin B12. Hỗ trợ thần kinh, sản sinh tế bào máu. Tăng cường năng lượng.",
-    "category": "Thực phẩm chức năng",
-    "rating": 4.6,
-    "inStock": true
-  },
-  {
-    "id": "98",
-    "name": "Nước rửa kính áp tròng",
-    "price": 90000,
-    "image": "https://via.placeholder.com/300x300/607D8B/FFFFFF?text=Contact+Lens+Solution",
-    "description": "Dung dịch rửa và bảo quản kính áp tròng. Diệt khuẩn, làm sạch, giữ ẩm cho kính.",
-    "category": "Thiết bị y tế",
-    "rating": 4.4,
-    "inStock": true
-  },
-  {
-    "id": "99",
-    "name": "Kem dưỡng ẩm Aveeno",
-    "price": 180000,
-    "image": "https://via.placeholder.com/300x300/8BC34A/FFFFFF?text=Aveeno",
-    "description": "Kem dưỡng ẩm yến mạch cho da khô, nhạy cảm. Giúp làm dịu da, cung cấp độ ẩm suốt 24h.",
-    "category": "Sản phẩm làm đẹp",
-    "rating": 4.9,
-    "inStock": true
-  },
-  {
-    "id": "100",
-    "name": "Nước súc miệng diệt khuẩn",
-    "price": 55000,
-    "image": "https://via.placeholder.com/300x300/F44336/FFFFFF?text=Antiseptic+Mouthwash",
-    "description": "Nước súc miệng kháng khuẩn, ngừa sâu răng. Giúp làm sạch mảng bám, diệt vi khuẩn.",
-    "category": "Chăm sóc sức khỏe",
-    "rating": 4.5,
-    "inStock": true
-  }
-],
+    {
+      "id": "1",
+      "name": "Paracetamol 500mg",
+      "price": 25000,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ],
+      "description": "Thuốc giảm đau, hạ sốt hiệu quả. Thành phần chính: Paracetamol 500mg. Chỉ định: Giảm đau nhẹ đến vừa, hạ sốt. Liều dùng: Người lớn uống 1-2 viên/lần, 3-4 lần/ngày.",
+      "category": "Thuốc không kê đơn",
+      "rating": 4.5,
+      "inStock": true
+    },
+    {
+      "id": "2",
+      "name": "Vitamin C 1000mg",
+      "price": 150000,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ],
+      "description": "Bổ sung vitamin C tăng cường sức đề kháng. Thành phần: Acid ascorbic 1000mg. Công dụng: Tăng cường miễn dịch, chống oxy hóa, làm đẹp da.",
+      "category": "Thực phẩm chức năng",
+      "rating": 4.8,
+      "inStock": true
+    },
+    {
+      "id": "3",
+      "name": "Amoxicillin 500mg",
+      "price": 45000,
+      "description": "Kháng sinh điều trị nhiễm khuẩn. Thành phần: Amoxicillin trihydrat 500mg. Chỉ định: Nhiễm khuẩn đường hô hấp, tiết niệu, da và mô mềm.",
+      "category": "Thuốc kê đơn",
+      "rating": 4.2,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Omega-3 Fish Oil",
+      "price": 320000,
+      "description": "Dầu cá Omega-3 bổ sung DHA, EPA. Công dụng: Tốt cho tim mạch, não bộ, mắt. Hỗ trợ phát triển trí não cho trẻ em và người cao tuổi.",
+      "category": "Thực phẩm chức năng",
+      "rating": 4.6,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Gel rửa tay khô",
+      "price": 35000,
+      "description": "Gel rửa tay khô kháng khuẩn 75% cồn. Diệt 99.9% vi khuẩn, virus. Không cần nước, tiện lợi sử dụng mọi lúc mọi nơi.",
+      "category": "Chăm sóc sức khỏe",
+      "rating": 4.3,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Kem chống nắng SPF 50+",
+      "price": 180000,
+      "description": "Kem chống nắng phổ rộng SPF 50+ PA+++. Bảo vệ da khỏi tia UV, chống lão hóa. Thành phần tự nhiên, không gây nhờn rít.",
+      "category": "Sản phẩm làm đẹp",
+      "rating": 4.7,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Nhiệt kế điện tử",
+      "price": 250000,
+      "description": "Nhiệt kế điện tử đo trán không tiếp xúc. Đo nhanh trong 1 giây, độ chính xác cao ±0.2°C. Có báo động sốt, nhớ 32 lần đo.",
+      "category": "Thiết bị y tế",
+      "rating": 4.4,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Thuốc ho Prospan",
+      "price": 85000,
+      "description": "Siro ho từ thảo dược tự nhiên. Thành phần: Cao khô lá thường xuân. Giúp long đờm, giảm ho, phù hợp cho cả trẻ em và người lớn.",
+      "category": "Thuốc không kê đơn",
+      "rating": 4.1,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Viên uống bổ khớp Glucosamine",
+      "price": 450000,
+      "description": "Viên uống hỗ trợ chức năng xương khớp. Thành phần chính: Glucosamine Sulfate. Giúp tăng cường dịch khớp, giảm đau khớp.",
+      "category": "Thực phẩm chức năng",
+      "rating": 4.7,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Thuốc nhỏ mắt V.Rohto",
+      "price": 30000,
+      "description": "Thuốc nhỏ mắt làm dịu mắt, giảm mỏi mắt. Thành phần: Tetrahydrozoline HCl, Vitamin B6. Giúp giảm ngứa, đỏ mắt do mệt mỏi.",
+      "category": "Thuốc không kê đơn",
+      "rating": 4.6,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Sữa rửa mặt Cetaphil",
+      "price": 120000,
+      "description": "Sữa rửa mặt dịu nhẹ, không gây kích ứng. Dành cho da nhạy cảm. Giúp làm sạch sâu, giữ ẩm cho da.",
+      "category": "Sản phẩm làm đẹp",
+      "rating": 4.9,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Thuốc cảm cúm Coldflu",
+      "price": 55000,
+      "description": "Thuốc điều trị các triệu chứng cảm cúm, hắt hơi, sổ mũi. Thành phần: Paracetamol, Phenylephrine, Chlorpheniramine. Liều dùng: 1 viên/lần, 2-3 lần/ngày.",
+      "category": "Thuốc không kê đơn",
+      "rating": 4.3,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Siro ăn ngon cho bé",
+      "price": 180000,
+      "description": "Bổ sung Lysine, kẽm, vitamin nhóm B. Giúp bé ăn ngon miệng hơn, tăng cường hấp thu dưỡng chất.",
+      "category": "Thực phẩm chức năng",
+      "rating": 4.5,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Băng gạc y tế",
+      "price": 15000,
+      "description": "Băng gạc y tế vô trùng, dùng để băng bó vết thương. Thấm hút tốt, không dính vào vết thương.",
+      "category": "Thiết bị y tế",
+      "rating": 4,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Khẩu trang y tế 4 lớp",
+      "price": 60000,
+      "description": "Khẩu trang y tế 4 lớp kháng khuẩn. Chống bụi mịn, vi khuẩn và giọt bắn. Dây đeo co giãn thoải mái.",
+      "category": "Chăm sóc sức khỏe",
+      "rating": 4.8,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Kem bôi ngoài da Hydrocortisone",
+      "price": 40000,
+      "description": "Kem bôi ngoài da giảm ngứa, sưng, viêm. Thành phần: Hydrocortisone acetate. Chỉ định: Eczema, viêm da, côn trùng cắn.",
+      "category": "Thuốc kê đơn",
+      "rating": 4.1,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "17",
+      "name": "Sữa bột Ensure Gold",
+      "price": 750000,
+      "description": "Sữa dinh dưỡng đầy đủ, cân bằng cho người lớn tuổi. Giúp phục hồi sức khỏe, tăng cường sức đề kháng.",
+      "category": "Thực phẩm chức năng",
+      "rating": 4.9,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "18",
+      "name": "Nước súc miệng Listerine",
+      "price": 75000,
+      "description": "Nước súc miệng diệt khuẩn, làm sạch khoang miệng. Giúp hơi thở thơm mát, ngăn ngừa sâu răng.",
+      "category": "Chăm sóc sức khỏe",
+      "rating": 4.5,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "19",
+      "name": "Máy đo huyết áp Omron",
+      "price": 950000,
+      "description": "Máy đo huyết áp điện tử bắp tay. Độ chính xác cao, dễ sử dụng. Có chức năng cảnh báo nhịp tim bất thường.",
+      "category": "Thiết bị y tế",
+      "rating": 4.8,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "20",
+      "name": "Kem dưỡng ẩm Nivea",
+      "price": 85000,
+      "description": "Kem dưỡng ẩm toàn thân, giúp da mềm mại, mịn màng. Không gây nhờn rít, phù hợp mọi loại da.",
+      "category": "Sản phẩm làm đẹp",
+      "rating": 4.6,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "21",
+      "name": "Thuốc nhỏ mũi Otrivin",
+      "price": 40000,
+      "description": "Thuốc nhỏ mũi làm giảm nghẹt mũi, sổ mũi. Thành phần: Xylometazoline. Tác dụng nhanh, kéo dài.",
+      "category": "Thuốc không kê đơn",
+      "rating": 4.2,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "22",
+      "name": "Thực phẩm chức năng Bổ Gan",
+      "price": 280000,
+      "description": "Viên uống hỗ trợ chức năng gan. Thành phần: Silymarin, Actiso. Giúp giải độc gan, bảo vệ tế bào gan.",
+      "category": "Thực phẩm chức năng",
+      "rating": 4.5,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "23",
+      "name": "Thuốc đau dạ dày Gaviscon",
+      "price": 60000,
+      "description": "Thuốc trị trào ngược dạ dày, ợ nóng. Thành phần: Sodium Alginate, Calcium Carbonate. Tạo lớp màng bảo vệ dạ dày.",
+      "category": "Thuốc không kê đơn",
+      "rating": 4.6,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "24",
+      "name": "Nước muối sinh lý",
+      "price": 10000,
+      "description": "Nước muối sinh lý 0.9% NaCl. Dùng để rửa mắt, rửa mũi, súc họng. An toàn cho mọi đối tượng.",
+      "category": "Thiết bị y tế",
+      "rating": 4.7,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "25",
+      "name": "Dầu tràm khuynh diệp",
+      "price": 90000,
+      "description": "Dầu tràm gió giúp giữ ấm cơ thể, phòng cảm lạnh. Phù hợp cho trẻ em và người lớn.",
+      "category": "Chăm sóc sức khỏe",
+      "rating": 4.4,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "26",
+      "name": "Thuốc tiêu chảy Smecta",
+      "price": 25000,
+      "description": "Thuốc điều trị tiêu chảy cấp. Thành phần: Dioctahedral Smectite. Giúp hấp thu độc tố, bảo vệ niêm mạc ruột.",
+      "category": "Thuốc không kê đơn",
+      "rating": 4.3,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "27",
+      "name": "Kem đánh răng P/S",
+      "price": 20000,
+      "description": "Kem đánh răng bảo vệ nướu, ngăn ngừa sâu răng. Hương bạc hà tươi mát.",
+      "category": "Chăm sóc sức khỏe",
+      "rating": 4.5,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "28",
+      "name": "Que thử thai Quickstrip",
+      "price": 30000,
+      "description": "Que thử thai nhanh, chính xác. Độ nhạy cao, cho kết quả sau 5 phút.",
+      "category": "Thiết bị y tế",
+      "rating": 4.2,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "29",
+      "name": "Viên uống Bổ não Ginkgo Biloba",
+      "price": 350000,
+      "description": "Thực phẩm chức năng hỗ trợ tuần hoàn máu não. Thành phần: Cao Bạch quả. Giúp cải thiện trí nhớ, giảm chóng mặt.",
+      "category": "Thực phẩm chức năng",
+      "rating": 4.7,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "30",
+      "name": "Kem trị mụn La Roche-Posay",
+      "price": 250000,
+      "description": "Kem trị mụn chuyên sâu, giảm sưng viêm. Giúp làm mờ thâm, ngăn ngừa mụn tái phát.",
+      "category": "Sản phẩm làm đẹp",
+      "rating": 4.8,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "31",
+      "name": "Siro ho Astex",
+      "price": 70000,
+      "description": "Siro ho từ thảo dược, giảm ho, long đờm. Phù hợp cho trẻ em, người lớn. Hương dâu tây dễ uống.",
+      "category": "Thuốc không kê đơn",
+      "rating": 4.4,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "32",
+      "name": "Bổ sung sắt cho bà bầu",
+      "price": 180000,
+      "description": "Viên uống bổ sung sắt, Acid Folic cho phụ nữ mang thai. Giúp phòng ngừa thiếu máu do thiếu sắt.",
+      "category": "Thực phẩm chức năng",
+      "rating": 4.6,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "33",
+      "name": "Khẩu trang N95",
+      "price": 120000,
+      "description": "Khẩu trang N95 chống bụi mịn, virus. Có van thở, dễ thở hơn khi đeo lâu. Dây đeo chắc chắn.",
+      "category": "Chăm sóc sức khỏe",
+      "rating": 4.9,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "34",
+      "name": "Cồn y tế 70 độ",
+      "price": 20000,
+      "description": "Cồn y tế 70 độ. Dùng để sát khuẩn, tiệt trùng dụng cụ y tế và bề mặt.",
+      "category": "Thiết bị y tế",
+      "rating": 4.5,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "35",
+      "name": "Thuốc chống dị ứng Loratadine",
+      "price": 35000,
+      "description": "Thuốc kháng histamin trị dị ứng. Giảm các triệu chứng: hắt hơi, sổ mũi, ngứa, mề đay. Không gây buồn ngủ.",
+      "category": "Thuốc không kê đơn",
+      "rating": 4.1,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "36",
+      "name": "Dầu gội Selsun",
+      "price": 100000,
+      "description": "Dầu gội trị gàu, nấm da đầu. Thành phần: Selenium Sulfide. Giúp giảm ngứa, sạch gàu hiệu quả.",
+      "category": "Sản phẩm làm đẹp",
+      "rating": 4.6,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "37",
+      "name": "Viên uống Bổ sung canxi",
+      "price": 250000,
+      "description": "Bổ sung canxi, vitamin D3, K2. Hỗ trợ xương chắc khỏe, phòng loãng xương. Dùng cho người lớn tuổi, phụ nữ có thai.",
+      "category": "Thực phẩm chức năng",
+      "rating": 4.7,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "38",
+      "name": "Nhiệt kế thủy ngân",
+      "price": 50000,
+      "description": "Nhiệt kế thủy ngân, đo nhiệt độ cơ thể. An toàn, chính xác. Đọc kết quả dễ dàng.",
+      "category": "Thiết bị y tế",
+      "rating": 4,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "39",
+      "name": "Kem đánh răng Sensodyne",
+      "price": 60000,
+      "description": "Kem đánh răng dành cho răng nhạy cảm. Giúp giảm ê buốt, bảo vệ men răng hiệu quả.",
+      "category": "Chăm sóc sức khỏe",
+      "rating": 4.8,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "40",
+      "name": "Kem trị sẹo Contractubex",
+      "price": 150000,
+      "description": "Kem trị sẹo lồi, sẹo lõm, sẹo do bỏng. Giúp làm mềm, phẳng và mờ sẹo cũ, sẹo mới.",
+      "category": "Sản phẩm làm đẹp",
+      "rating": 4.5,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "41",
+      "name": "Bông gòn y tế",
+      "price": 12000,
+      "description": "Bông gòn y tế tiệt trùng. Dùng để sát trùng, vệ sinh vết thương. Thấm hút tốt.",
+      "category": "Thiết bị y tế",
+      "rating": 4.3,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "42",
+      "name": "Thuốc tiêu hóa Phosphalugel",
+      "price": 70000,
+      "description": "Thuốc trị đau dạ dày, viêm loét dạ dày. Thành phần: Nhôm Phosphat. Giúp trung hòa axit, bảo vệ niêm mạc.",
+      "category": "Thuốc không kê đơn",
+      "rating": 4.6,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "43",
+      "name": "Siro ho Prospan",
+      "price": 85000,
+      "description": "Siro ho từ thảo dược tự nhiên. Thành phần: Cao khô lá thường xuân. Giúp long đờm, giảm ho, phù hợp cho cả trẻ em và người lớn.",
+      "category": "Thuốc không kê đơn",
+      "rating": 4.1,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "44",
+      "name": "Dầu gội đầu thảo dược",
+      "price": 95000,
+      "description": "Dầu gội chiết xuất từ bồ kết, hương nhu, sả. Giúp tóc mềm mượt, chắc khỏe, giảm gãy rụng.",
+      "category": "Sản phẩm làm đẹp",
+      "rating": 4.7,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "45",
+      "name": "Bổ sung Vitamin A",
+      "price": 150000,
+      "description": "Viên uống bổ sung vitamin A. Hỗ trợ thị lực, làm đẹp da, tăng cường miễn dịch.",
+      "category": "Thực phẩm chức năng",
+      "rating": 4.5,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "46",
+      "name": "Tăm bông y tế",
+      "price": 18000,
+      "description": "Tăm bông y tế tiệt trùng. Dùng để vệ sinh tai, mũi, làm sạch vết thương.",
+      "category": "Thiết bị y tế",
+      "rating": 4,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "47",
+      "name": "Khăn giấy ướt kháng khuẩn",
+      "price": 25000,
+      "description": "Khăn giấy ướt kháng khuẩn, không cồn. Dùng để vệ sinh tay, mặt. Mềm mại, an toàn cho da.",
+      "category": "Chăm sóc sức khỏe",
+      "rating": 4.4,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "48",
+      "name": "Thuốc ho cảm cúm",
+      "price": 50000,
+      "description": "Thuốc điều trị các triệu chứng cảm cúm, ho khan, ho có đờm. Giúp giảm đau họng, hạ sốt.",
+      "category": "Thuốc không kê đơn",
+      "rating": 4.2,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "49",
+      "name": "Viên sủi Vitamin C",
+      "price": 50000,
+      "description": "Viên sủi bổ sung vitamin C. Tăng cường sức đề kháng, chống oxy hóa. Hương cam dễ uống.",
+      "category": "Thực phẩm chức năng",
+      "rating": 4.8,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    },
+    {
+      "id": "50",
+      "name": "Máy đo đường huyết",
+      "price": 800000,
+      "description": "Máy đo đường huyết Accu-Chek. Đo nhanh, chính xác. Bộ nhớ lưu trữ kết quả.",
+      "category": "Thiết bị y tế",
+      "rating": 4.9,
+      "inStock": true,
+      "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+      "previewImages": [
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+        "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+      ]
+    }
+  ],
   "reviews": [
     {
       "id": "1",
@@ -1081,7 +942,14 @@
             "id": "1",
             "name": "Paracetamol 500mg",
             "price": 25000,
-            "image": "https://via.placeholder.com/300x300/2196F3/FFFFFF?text=Paracetamol"
+            "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+            "previewImages": [
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+            ]
           }
         }
       ],
@@ -1089,6 +957,146 @@
       "status": "delivered",
       "createdAt": "2024-01-10T08:00:00.000Z",
       "shippingAddress": "456 Lê Văn Việt, Quận 9, TP.HCM"
+    },
+    {
+      "id": "1757399934678",
+      "userId": "1",
+      "items": [
+        {
+          "id": "1757320288996",
+          "productId": "1",
+          "quantity": 2,
+          "product": {
+            "id": "1",
+            "name": "Paracetamol 500mg",
+            "price": 25000,
+            "description": "Thuốc giảm đau, hạ sốt hiệu quả. Thành phần chính: Paracetamol 500mg. Chỉ định: Giảm đau nhẹ đến vừa, hạ sốt. Liều dùng: Người lớn uống 1-2 viên/lần, 3-4 lần/ngày.",
+            "category": "Thuốc không kê đơn",
+            "rating": 4.5,
+            "inStock": true,
+            "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+            "previewImages": [
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+            ]
+          }
+        }
+      ],
+      "total": 80000,
+      "status": "pending",
+      "shippingAddress": "123 Nguyễn Văn Linh, Quận 7, TP.HCM",
+      "createdAt": "2025-09-09T06:38:54.678Z"
+    },
+    {
+      "id": "1757403303003",
+      "userId": "1",
+      "items": [
+        {
+          "id": "1757403244199",
+          "productId": "1",
+          "quantity": 1,
+          "product": {
+            "id": "1",
+            "name": "Paracetamol 500mg",
+            "price": 25000,
+            "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+            "previewImages": [
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+            ],
+            "description": "Thuốc giảm đau, hạ sốt hiệu quả. Thành phần chính: Paracetamol 500mg. Chỉ định: Giảm đau nhẹ đến vừa, hạ sốt. Liều dùng: Người lớn uống 1-2 viên/lần, 3-4 lần/ngày.",
+            "category": "Thuốc không kê đơn",
+            "rating": 4.5,
+            "inStock": true
+          }
+        },
+        {
+          "id": "1757403269183",
+          "productId": "2",
+          "quantity": 1,
+          "product": {
+            "id": "2",
+            "name": "Vitamin C 1000mg",
+            "price": 150000,
+            "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+            "previewImages": [
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+            ],
+            "description": "Bổ sung vitamin C tăng cường sức đề kháng. Thành phần: Acid ascorbic 1000mg. Công dụng: Tăng cường miễn dịch, chống oxy hóa, làm đẹp da.",
+            "category": "Thực phẩm chức năng",
+            "rating": 4.8,
+            "inStock": true
+          }
+        }
+      ],
+      "total": 205000,
+      "status": "pending",
+      "shippingAddress": "123 Nguyễn Văn Linh, Quận 7, TP.HCM",
+      "createdAt": "2025-09-09T07:35:03.003Z"
+    },
+    {
+      "id": "1757403331584",
+      "userId": "1",
+      "items": [
+        {
+          "id": "1757403244199",
+          "productId": "1",
+          "quantity": 1,
+          "product": {
+            "id": "1",
+            "name": "Paracetamol 500mg",
+            "price": 25000,
+            "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+            "previewImages": [
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+            ],
+            "description": "Thuốc giảm đau, hạ sốt hiệu quả. Thành phần chính: Paracetamol 500mg. Chỉ định: Giảm đau nhẹ đến vừa, hạ sốt. Liều dùng: Người lớn uống 1-2 viên/lần, 3-4 lần/ngày.",
+            "category": "Thuốc không kê đơn",
+            "rating": 4.5,
+            "inStock": true
+          }
+        },
+        {
+          "id": "1757403269183",
+          "productId": "2",
+          "quantity": 1,
+          "product": {
+            "id": "2",
+            "name": "Vitamin C 1000mg",
+            "price": 150000,
+            "thumbnail": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+            "previewImages": [
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png",
+              "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2022/8/30/uong-thuoc-thoi-diem-nao-16618466465071926930931.png"
+            ],
+            "description": "Bổ sung vitamin C tăng cường sức đề kháng. Thành phần: Acid ascorbic 1000mg. Công dụng: Tăng cường miễn dịch, chống oxy hóa, làm đẹp da.",
+            "category": "Thực phẩm chức năng",
+            "rating": 4.8,
+            "inStock": true
+          }
+        }
+      ],
+      "total": 205000,
+      "status": "pending",
+      "shippingAddress": "123 Nguyễn Văn Linh, Quận 7, TP.HCM",
+      "createdAt": "2025-09-09T07:35:31.584Z"
     }
   ]
 }
