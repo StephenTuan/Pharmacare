@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View, ActivityIndicator } from 'react-native';
+import { useAppDispatch } from '../store/hooks';
+import { loadFavorites } from '../store/slices/favoritesSlice';
+import { fetchProducts } from '../store/slices/productsSlice';
 
 import SplashScreen from '../screens/SplashScreen';
 import LoginScreen from '../screens/LoginScreen';
@@ -21,6 +24,13 @@ import { RootStackParamList, TabParamList } from '../types';
 
 const Stack = createStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
+
+// Loading component for lazy screens
+const LoadingScreen = () => (
+  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f8f9fa' }}>
+    <ActivityIndicator size="large" color="#00A86B" />
+  </View>
+);
 
 const TabNavigator = () => {
   return (
@@ -46,7 +56,20 @@ const TabNavigator = () => {
         tabBarActiveTintColor: '#00A86B',
         tabBarInactiveTintColor: 'gray',
         headerShown: false,
+        // Performance optimizations
+        lazy: true,
+        tabBarHideOnKeyboard: true,
+        tabBarStyle: {
+          elevation: 8,
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: -2 },
+          borderTopWidth: 0,
+        },
       })}
+      initialRouteName="Home"
+      backBehavior="initialRoute"
     >
       <Tab.Screen 
         name="Home" 
@@ -73,12 +96,49 @@ const TabNavigator = () => {
 };
 
 const AppNavigator = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    // Load initial data when app starts
+    dispatch(fetchProducts());
+    dispatch(loadFavorites());
+  }, [dispatch]);
+
   return (
     <NavigationContainer>
       <Stack.Navigator 
         initialRouteName="Splash"
         screenOptions={{
           headerShown: false,
+          // Performance optimizations
+          cardStyleInterpolator: ({ current, layouts }) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+          transitionSpec: {
+            open: {
+              animation: 'timing',
+              config: {
+                duration: 300,
+              },
+            },
+            close: {
+              animation: 'timing',
+              config: {
+                duration: 250,
+              },
+            },
+          },
         }}
       >
         <Stack.Screen name="Splash" component={SplashScreen} />

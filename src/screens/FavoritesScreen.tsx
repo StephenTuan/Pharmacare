@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
   Alert,
   StatusBar,
 } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { loadFavorites, removeFromFavorites } from '../store/slices/favoritesSlice';
@@ -17,35 +18,53 @@ import { Product } from '../types';
 
 const FavoritesScreen: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { favoriteProducts, loading } = useAppSelector(state => state.favorites);
+  const { favoriteProducts, favoriteIds, loading } = useAppSelector(state => state.favorites);
 
   useEffect(() => {
     dispatch(loadFavorites());
   }, [dispatch]);
 
-  const handleRemoveFavorite = async (productId: string) => {
+  // Reload favorites when favoriteIds change (from other screens)
+  useEffect(() => {
+    dispatch(loadFavorites());
+  }, [favoriteIds, dispatch]);
+
+  // Reload favorites when screen comes into focus
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(loadFavorites());
+    }, [dispatch])
+  );
+
+  const handleRemoveFavorite = useCallback(async (productId: string) => {
     try {
       await dispatch(removeFromFavorites(productId)).unwrap();
     } catch (error) {
       Alert.alert('Lỗi', 'Không thể xóa khỏi danh sách yêu thích');
     }
-  };
+  }, [dispatch]);
 
-  const handleAddToCart = async (productId: string) => {
+  const handleAddToCart = useCallback(async (productId: string) => {
     try {
       await dispatch(addToCart({ productId })).unwrap();
       Alert.alert('Thành công', 'Đã thêm sản phẩm vào giỏ hàng');
     } catch (error) {
       Alert.alert('Lỗi', 'Không thể thêm sản phẩm vào giỏ hàng');
     }
-  };
+  }, [dispatch]);
 
-  const renderFavoriteProduct = ({ item }: { item: Product }) => (
+  // Memoized FavoriteProductCard component
+  const FavoriteProductCard = React.memo(({ item, onRemove, onAddToCart }: {
+    item: Product;
+    onRemove: () => void;
+    onAddToCart: () => void;
+  }) => (
     <View style={styles.productCard}>
       <Image
         source={{ uri: item.thumbnail || item.image || 'https://via.placeholder.com/100' }}
         style={styles.productImage}
         resizeMode="cover"
+        loadingIndicatorSource={{ uri: 'https://via.placeholder.com/100' }}
       />
       
       <View style={styles.productInfo}>
@@ -68,20 +87,36 @@ const FavoritesScreen: React.FC = () => {
       <View style={styles.actionButtons}>
         <TouchableOpacity
           style={styles.removeButton}
-          onPress={() => handleRemoveFavorite(item.id)}
+          onPress={onRemove}
+          hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
         >
           <Icon name="favorite" size={20} color="#FF4444" />
         </TouchableOpacity>
         
         <TouchableOpacity
           style={styles.addToCartButton}
-          onPress={() => handleAddToCart(item.id)}
+          onPress={onAddToCart}
+          hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
         >
           <Icon name="add-shopping-cart" size={20} color="#fff" />
         </TouchableOpacity>
       </View>
     </View>
-  );
+  ));
+
+  const renderFavoriteProduct = useCallback(({ item }: { item: Product }) => (
+    <FavoriteProductCard
+      item={item}
+      onRemove={() => handleRemoveFavorite(item.id)}
+      onAddToCart={() => handleAddToCart(item.id)}
+    />
+  ), [handleRemoveFavorite, handleAddToCart]);
+
+  const getItemLayout = useCallback((data: any, index: number) => ({
+    length: 120, // Approximate height of each favorite item
+    offset: 120 * index,
+    index,
+  }), []);
 
   const renderEmptyState = () => (
     <View style={styles.emptyContainer}>
@@ -143,6 +178,14 @@ const FavoritesScreen: React.FC = () => {
               keyExtractor={(item) => item.id}
               showsVerticalScrollIndicator={false}
               contentContainerStyle={styles.productList}
+              // Performance optimizations
+              removeClippedSubviews={true}
+              maxToRenderPerBatch={8}
+              updateCellsBatchingPeriod={50}
+              initialNumToRender={8}
+              windowSize={8}
+              getItemLayout={getItemLayout}
+              disableVirtualization={false}
             />
           </>
         ) : (

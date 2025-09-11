@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import {
   View,
   Text,
@@ -13,7 +13,6 @@ import {
   ScrollView,
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchProducts, setSearchQuery, setSelectedCategory } from '../store/slices/productsSlice';
 import { addToCart } from '../store/slices/cartSlice';
@@ -44,7 +43,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
     dispatch(loadFavorites());
   }, [dispatch]);
 
-  const handleAddToCart = async (productId: string) => {
+  const handleAddToCart = useCallback(async (productId: string) => {
     try {
       console.log('Adding to cart:', productId);
       const result = await dispatch(addToCart({ productId })).unwrap();
@@ -54,9 +53,9 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
       console.error('Add to cart error:', error);
       Alert.alert('Lỗi', 'Không thể thêm sản phẩm vào giỏ hàng');
     }
-  };
+  }, [dispatch]);
 
-  const handleToggleFavorite = async (productId: string) => {
+  const handleToggleFavorite = useCallback(async (productId: string) => {
     try {
       console.log('Toggling favorite:', productId);
       const result = await dispatch(toggleFavorite(productId)).unwrap();
@@ -65,20 +64,20 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
       console.error('Toggle favorite error:', error);
       Alert.alert('Lỗi', 'Không thể cập nhật danh sách yêu thích');
     }
-  };
+  }, [dispatch]);
 
-  const onRefresh = () => {
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
     dispatch(fetchProducts()).finally(() => setRefreshing(false));
-  };
+  }, [dispatch]);
 
-  const handleCategorySelect = (category: string | null) => {
+  const handleCategorySelect = useCallback((category: string | null) => {
     dispatch(setSelectedCategory(category));
-  };
+  }, [dispatch]);
 
-  const handleSearchChange = (query: string) => {
+  const handleSearchChange = useCallback((query: string) => {
     dispatch(setSearchQuery(query));
-  };
+  }, [dispatch]);
 
   const renderCategoryTab = ({ item }: { item: string }) => {
     const isSelected = selectedCategory === item;
@@ -94,10 +93,17 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
     );
   };
 
-  const renderProduct = ({ item }: { item: Product }) => (
+  // Memoized ProductCard component for better performance
+  const ProductCard = React.memo(({ item, isFavorite, onPress, onToggleFavorite, onAddToCart }: {
+    item: Product;
+    isFavorite: boolean;
+    onPress: () => void;
+    onToggleFavorite: () => void;
+    onAddToCart: () => void;
+  }) => (
     <TouchableOpacity
       style={styles.productCard}
-      onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
+      onPress={onPress}
       activeOpacity={0.9}
     >
       <View style={styles.productImageContainer}>
@@ -105,15 +111,17 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
           source={{ uri: item.thumbnail || item.image || 'https://via.placeholder.com/150' }}
           style={styles.productImage}
           resizeMode="cover"
+          loadingIndicatorSource={{ uri: 'https://via.placeholder.com/150' }}
         />
         <TouchableOpacity
           style={styles.favoriteButton}
-          onPress={() => handleToggleFavorite(item.id)}
+          onPress={onToggleFavorite}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
           <Icon
-            name={favoriteIds.includes(item.id) ? 'favorite' : 'favorite-border'}
+            name={isFavorite ? 'favorite' : 'favorite-border'}
             size={20}
-            color={favoriteIds.includes(item.id) ? '#FF4444' : '#666'}
+            color={isFavorite ? '#FF4444' : '#666'}
           />
         </TouchableOpacity>
       </View>
@@ -134,15 +142,36 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
           <Text style={styles.price}>{item.price.toLocaleString('vi-VN')}đ</Text>
           <TouchableOpacity
             style={styles.addToCartButton}
-            onPress={() => handleAddToCart(item.id)}
+            onPress={onAddToCart}
             activeOpacity={0.7}
+            hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
           >
             <Icon name="add-shopping-cart" size={18} color="#fff" />
           </TouchableOpacity>
         </View>
       </View>
     </TouchableOpacity>
-  );
+  ));
+
+  const renderProduct = useCallback(({ item }: { item: Product }) => {
+    const isFavorite = favoriteIds.includes(item.id);
+    
+    return (
+      <ProductCard
+        item={item}
+        isFavorite={isFavorite}
+        onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
+        onToggleFavorite={() => handleToggleFavorite(item.id)}
+        onAddToCart={() => handleAddToCart(item.id)}
+      />
+    );
+  }, [favoriteIds, navigation, handleToggleFavorite, handleAddToCart]);
+
+  const getItemLayout = useCallback((data: any, index: number) => ({
+    length: 200, // Approximate height of each item
+    offset: 200 * index,
+    index,
+  }), []);
 
   if (loading && !refreshing) {
     return (
@@ -253,6 +282,14 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
               </Text>
             </View>
           }
+          // Performance optimizations
+          removeClippedSubviews={true}
+          maxToRenderPerBatch={10}
+          updateCellsBatchingPeriod={50}
+          initialNumToRender={10}
+          windowSize={10}
+          getItemLayout={getItemLayout}
+          disableVirtualization={false}
         />
       </View>
     </View>

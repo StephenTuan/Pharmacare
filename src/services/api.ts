@@ -197,7 +197,7 @@ export const cartAPI = {
     try {
       const currentUser = await authAPI.getCurrentUser();
       if (currentUser) {
-        await fetch(`http://10.0.2.2:3001/users/${currentUser.id}`, {
+        await fetch(`http://192.168.31.79:3001/users/${currentUser.id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -226,7 +226,7 @@ export const cartAPI = {
     try {
       const currentUser = await authAPI.getCurrentUser();
       if (currentUser) {
-        await fetch(`http://10.0.2.2:3001/users/${currentUser.id}`, {
+        await fetch(`http://192.168.31.79:3001/users/${currentUser.id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -258,7 +258,7 @@ export const cartAPI = {
       try {
         const currentUser = await authAPI.getCurrentUser();
         if (currentUser) {
-          await fetch(`http://10.0.2.2:3001/users/${currentUser.id}`, {
+          await fetch(`http://192.168.31.79:3001/users/${currentUser.id}`, {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
@@ -285,7 +285,7 @@ export const cartAPI = {
     try {
       const currentUser = await authAPI.getCurrentUser();
       if (currentUser) {
-        await fetch(`http://10.0.2.2:3001/users/${currentUser.id}`, {
+        await fetch(`http://192.168.31.79:3001/users/${currentUser.id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
